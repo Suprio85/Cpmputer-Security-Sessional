@@ -45,6 +45,8 @@ def generate_safe_prime(bits: int) :
             p = 2 * q + 1
             if miller_rabin(p):
                 return p
+            
+            
 
 def find_generator(P: int) :
     q = (P - 1) // 2
@@ -56,18 +58,19 @@ def find_generator(P: int) :
             continue
         return g
     
+def generate_public_params(bits: int, seed: int = 43):
+    if seed is not None:
+        random.seed(seed)
+    P = generate_safe_prime(bits)
+    g = find_generator(P)
+    return P, g
  
-def generate_private_public(P:int, g:int, bits:int):
+def generate_private_public_key(P:int, g:int, bits:int):
     
     secret = random.getrandbits(bits) | (1 << (bits - 1))
     public = pow(g, secret, P)
     return secret, public
- 
- 
-def compute_shared_secret(their_public: int, my_private: int, P: int) :
   
-    return pow(their_public, my_private, P)
- 
  
 def derive_aes_key(shared_secret, key_bits):
     mask = (1 << key_bits) - 1
@@ -89,7 +92,7 @@ def compute_shared_secret(their_public: int, my_private: int, P: int):
 def derive_aes_key(shared_secret, key_bits):
     mask = (1 << key_bits) - 1
     key_int = shared_secret & mask
-    return key_int.to_bytes(key_bits // 8, "big")
+    return key_int.to_bytes(key_bits // 8)
  
  
 def run_single_exchange(bits: int, seed: int = 43) :
