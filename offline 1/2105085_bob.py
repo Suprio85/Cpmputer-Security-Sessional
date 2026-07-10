@@ -31,8 +31,8 @@ def main():
 
         
             P = utils.recv_int(conn)
-            g = utils.rev_int(conn)
-            A = utils.rev_int(conn)
+            g = utils.recv_int(conn)
+            A = utils.recv_int(conn)
             print(f"[Bob] Received P={P}, g={g}, A={A}")
 
            

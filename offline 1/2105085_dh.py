@@ -1,4 +1,3 @@
-import hashlib
 import random
 import os
 import time
@@ -18,19 +17,19 @@ def miller_rabin(n:int, k:int=20) :
     
     r = 0
     d = n-1
-    while d % 2 == 0 :
+    while d %2 == 0 :
         r += 1
         d//= 2
     
   
     for _ in range(k):
-        a = random.randrange(2, n - 1)
-        x = pow(a, d, n)
-        if x == 1 or x == n - 1:
+        a = random.randrange(2,n -1)
+        x = pow(a,d,n)
+        if x == 1 or x == n-1:
             continue
-        for _ in range(r - 1):
-            x = pow(x, 2, n)
-            if x == n - 1:
+        for _ in range(r-1):
+            x = pow(x,2,n)
+            if x == n-1:
                 break
         else:
             return False
@@ -40,21 +39,21 @@ def miller_rabin(n:int, k:int=20) :
 def generate_safe_prime(bits: int) :
     
     while True:
-        q = random.getrandbits(bits - 1) | 1 | (1 << (bits - 2)) 
+        q = random.getrandbits(bits-1) | 1 | (1 << (bits-2)) 
         if miller_rabin(q):
-            p = 2 * q + 1
+            p = 2*q+ 1
             if miller_rabin(p):
                 return p
             
             
 
 def find_generator(P: int) :
-    q = (P - 1) // 2
+    q = (P-1)//2
     while True:
-        g = random.randrange(2, P - 1)
-        if pow(g, 2, P) == 1:
+        g = random.randrange(2,P-1)
+        if pow(g,2,P) == 1:
             continue
-        if pow(g, q, P) == 1:
+        if pow(g,q,P) == 1:
             continue
         return g
     

@@ -1,7 +1,7 @@
 import os
 import time
 
-from numpy import block
+
 from aes_helpers import Sbox, InvSbox , Rcon, Mixer , InvMixer , gf_mult
 
 
@@ -35,7 +35,7 @@ def state_to_byte(state : list) :
         row = i%4
         col = i//4
         block[i] = state[row][col]
-    
+    # // print(block)
     return bytes(block)
 
 def sub_bytes(state) :
@@ -50,8 +50,8 @@ def sub_bytes(state) :
 def inv_sub_bytes(state) :
 
     for i in range(BLOCK_SIZE) :
-        row = i//4
-        col = i%4
+        row = i%4
+        col = i//4
         state[row][col] = InvSbox[state[row][col]]
 
     return state
@@ -149,7 +149,7 @@ def get_round_key_matrix(words, numr) :
 
 
 def encrypt_block(block, words) :
-    Nr = len(words) // 4 -1
+    Nr = len(words)//4 -1
 
     state = byte_to_state(block)
 
@@ -165,20 +165,18 @@ def encrypt_block(block, words) :
     return state_to_byte(state)
 
 def decrypt_block(block, words):
-    Nr = len(words) // 4 - 1
+    Nr = len(words)//4-1
     state = byte_to_state(block)
-    state = add_round_key(state, get_round_key_matrix(words, Nr))
- 
-    for i in range(Nr - 1, 0, -1):
+
+    state = add_round_key(state,get_round_key_matrix(words, Nr))
+
+    for i in range(Nr-1,-1,-1):
         state = inv_shift_row(state)
         state = inv_sub_bytes(state)
-        state = add_round_key(state, get_round_key_matrix(words, i))
-        state = inv_mix_columns(state)
- 
-    state = inv_shift_row(state)
-    state = inv_sub_bytes(state)
-    state = add_round_key(state, get_round_key_matrix(words, 0))
- 
+        state = add_round_key(state,get_round_key_matrix(words, i))
+        if i != 0:
+            state = inv_mix_columns(state)
+
     return state_to_byte(state)
 
 
@@ -200,9 +198,10 @@ def normalize_key(key_input: bytes, size_bytes=BLOCK_SIZE) :
     return key_input + bytes(size_bytes - len(key_input)) 
 
 
-def ecb_encrypt(plaintext:bytes,key:bytes) :
+def ecb_encrypt(plaintext:bytes,key:bytes, words=None) :
 
-    words = key_expansion(key)
+    if words is None:
+        words = key_expansion(key)
 
     padded_text = pad(plaintext)
 
@@ -213,8 +212,9 @@ def ecb_encrypt(plaintext:bytes,key:bytes) :
 
     return bytes(out)
 
-def ecb_decrypt(cypher_text:bytes,key:bytes) :
-    words = key_expansion(key)
+def ecb_decrypt(cypher_text:bytes,key:bytes, words=None) :
+    if words is None:
+        words = key_expansion(key)
 
     plain_text = bytearray()
 
@@ -223,8 +223,9 @@ def ecb_decrypt(cypher_text:bytes,key:bytes) :
 
     return unpad(bytes(plain_text))
 
-def  cbc_encrypt(plain_text:bytes,key:bytes) :
-    words = key_expansion(key)
+def  cbc_encrypt(plain_text:bytes,key:bytes, words=None) :
+    if words is None:
+        words = key_expansion(key)
     iv = os.urandom(BLOCK_SIZE)
     padded_text = pad(plain_text)
 
@@ -239,9 +240,10 @@ def  cbc_encrypt(plain_text:bytes,key:bytes) :
         prev = cypher
     return bytes(out)
 
-def cbc_decrypt(cypher_text:bytes, key:bytes) :
+def cbc_decrypt(cypher_text:bytes, key:bytes, words=None) :
     
-    words = key_expansion(key)
+    if words is None:
+        words = key_expansion(key)
     iv = cypher_text[:BLOCK_SIZE]
     cypher_block = cypher_text[BLOCK_SIZE:]
 
@@ -266,12 +268,13 @@ def demo(mode: str, key_ascii: str, plaintext_ascii: str, key_bits: int = 128):
     key = normalize_key(key_ascii.encode(), size_bytes=key_bits // 8)
     plaintext = plaintext_ascii.encode()
  
-    print(f"                AES-{key_bits} / {mode.upper()}       ")
-    print("\nKey:")
+    print(f"AES-{key_bits} / {mode.upper()}:=")
+    print("")
+    print("Key=:")
     print(f"In ASCII: {key_ascii}")
     print(f"In HEX: {hex_str(key)}")
- 
-    print("\nPlain Text:")
+    print("")
+    print("Plain Text:")
     print(f"In ASCII: {plaintext_ascii}")
     print(f"In HEX: {hex_str(plaintext)}")
     padded = pad(plaintext)
@@ -279,30 +282,30 @@ def demo(mode: str, key_ascii: str, plaintext_ascii: str, key_bits: int = 128):
     print(f"In HEX (After Padding): {hex_str(padded)}")
  
     t0 = time.perf_counter()
-    key_expansion(key)
+    words = key_expansion(key)
     t1 = time.perf_counter()
  
     t2 = time.perf_counter()
     if mode == "ecb":
-        ciphertext = ecb_encrypt(plaintext, key)
+        ciphertext = ecb_encrypt(plaintext, key, words=words)
     else:
-        ciphertext = cbc_encrypt(plaintext, key)
+        ciphertext = cbc_encrypt(plaintext, key, words=words)
     t3 = time.perf_counter()
- 
-    print("\nCiphered Text:")
+    print("")
+    print("Ciphered Text:")
     if mode == "cbc":
-        print("(IV is the first 16 bytes, followed by the actual ciphertext)")
+        print("CBC MODE:=")
     print(f"In HEX: {hex_str(ciphertext)}")
     print(f"In ASCII: {ciphertext.decode('latin-1')}")
  
     t4 = time.perf_counter()
     if mode == "ecb":
-        recovered = ecb_decrypt(ciphertext, key)
+        recovered = ecb_decrypt(ciphertext, key, words=words)
     else:
-        recovered = cbc_decrypt(ciphertext, key)
+        recovered = cbc_decrypt(ciphertext, key, words=words)
     t5 = time.perf_counter()
- 
-    print("\nDeciphered Text:")
+    print(" ")
+    print("Deciphered Text:")
     print(f"After Unpadding:\nIn ASCII: {recovered.decode()}")
     print(f"In HEX: {hex_str(recovered)}")
  
@@ -313,7 +316,8 @@ def demo(mode: str, key_ascii: str, plaintext_ascii: str, key_bits: int = 128):
  
  
 if __name__ == "__main__":
-    demo("cbc", "BUET CSE20 Batch", "We need picnic")
+    demo("ecb", "BUET CSE21 Batch", "We need picnic")
+    demo("cbc", "BUET CSE21 Batch", "We need picnic")
     
 
 
