@@ -58,7 +58,9 @@ def inv_sub_bytes(state) :
 
 def shift_row(state) :
     for i in range(4) :
+        # print(f"Before:{state[i]})
         state[i] = state[i][i:] + state[i][:i]
+        # print(f"After :{state[i]})
     return state
 
 def inv_shift_row(state) :
@@ -111,6 +113,7 @@ def rot_word(word:list) :
     word =  word[1:] + word[:1]
     return word
 
+
 def sub_byte(word:list) :
     word = [Sbox[b] for b in word]
     return word
@@ -124,16 +127,16 @@ def key_expansion(key: bytes) :
 
     words = []
     for i in range(Nk):
-        words.append(list(key[4 * i: 4 * i + 4]))
+        words.append(list(key[4*i: 4*i+4]))
  
     for i in range(Nk, exp_words):
         temp = words[i - 1]
         if i % Nk == 0:
             temp = sub_byte(rot_word(temp))
-            temp = [temp[0] ^ Rcon[i // Nk], temp[1], temp[2], temp[3]]
+            temp = [temp[0] ^ Rcon[i // Nk],temp[1],temp[2],temp[3]]
         elif Nk > 6 and i % Nk == 4 :
             temp = sub_byte(temp)
-        words.append([words[i - 4][b] ^ temp[b] for b in range(4)])
+        words.append([words[i-4][b] ^ temp[b] for b in range(4)])
  
     return words
 

@@ -1,7 +1,8 @@
-__pycache__/*
+__pycache__/
 *.pyc
 *.pyo
-
+2105085/
+*zip
 *.png
 *.jpg
 *.txt

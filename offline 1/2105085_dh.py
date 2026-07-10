@@ -41,7 +41,7 @@ def generate_safe_prime(bits: int) :
     while True:
         q = random.getrandbits(bits-1) | 1 | (1 << (bits-2)) 
         if miller_rabin(q):
-            p = 2*q+ 1
+            p = 2*q+1
             if miller_rabin(p):
                 return p
             
