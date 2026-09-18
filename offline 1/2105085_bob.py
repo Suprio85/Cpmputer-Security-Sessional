@@ -1,6 +1,7 @@
 import importlib.util
 import os
 import socket
+import sys
 
 
 def load_module(filename: str, module_name: str):
@@ -13,6 +14,15 @@ def load_module(filename: str, module_name: str):
 HOST = "127.0.0.1"
 PORT = 65432
 KEY_BITS = 128  
+OUTPUT_FILE = sys.argv[1] if len(sys.argv) > 1 else ""
+
+
+def resolve_output_path(kind: str, name: str) -> str:
+    if OUTPUT_FILE:
+        return OUTPUT_FILE
+    if kind == "file":
+        return f"received_{name}"
+    return "received_text.txt"
 
 
 def main():
@@ -48,9 +58,18 @@ def main():
             conn.sendall(b"READY")
 
             
+            header = utils.recv_bytes_with_length(conn)
+            kind, name = header.decode("utf-8").split("|", 1)
             ciphertext = utils.recv_bytes_with_length(conn)
             plaintext = aes.cbc_decrypt(ciphertext, aes_key)
-            print(f"[Bob] Decrypted plaintext: {plaintext.decode()}")
+            output_path = resolve_output_path(kind, name)
+
+            with open(output_path, "wb") as f:
+                f.write(plaintext)
+
+            if kind == "text":
+                print(f"[Bob] Decrypted text: {plaintext.decode('utf-8', errors='replace')}")
+            print(f"[Bob] Decrypted {kind} written to {output_path} ({len(plaintext)} bytes)")
 
 
 if __name__ == "__main__":

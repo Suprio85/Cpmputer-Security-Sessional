@@ -1,11 +1,12 @@
 import importlib.util
 import os
 import socket
+import sys
 
 HOST = "127.0.0.1"
 PORT = 65432
 KEY_BITS = 128  
-PLAINTEXT = b"We need picnic"  
+DEFAULT_TEXT = "We need picnic"
 
 def load_module(filename: str, module_name: str):
     path = os.path.join(os.path.dirname(os.path.abspath(__file__)), filename)
@@ -13,6 +14,28 @@ def load_module(filename: str, module_name: str):
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+def resolve_payload():
+    args = sys.argv[1:]
+    if not args:
+        return "text", "message.txt", DEFAULT_TEXT.encode("utf-8")
+
+    source = " ".join(args)
+    if source.startswith("text:"):
+        text = source[len("text:") :]
+        return "text", "message.txt", text.encode("utf-8")
+
+    if source.startswith("file:"):
+        path = source[len("file:") :]
+    elif len(args) == 1 and os.path.isfile(args[0]):
+        path = args[0]
+    else:
+        return "text", "message.txt", source.encode("utf-8")
+
+    with open(path, "rb") as f:
+        payload = f.read()
+    return "file", os.path.basename(path), payload
 
 
 def main():
@@ -45,9 +68,16 @@ def main():
         ready = sock.recv(5)
         print(f"[Alice] Bob says: {ready}")
 
-        ciphertext = aes.cbc_encrypt(PLAINTEXT, aes_key)
+        kind, name, payload = resolve_payload()
+        header = f"{kind}|{name}".encode("utf-8")
+
+        ciphertext = aes.cbc_encrypt(payload, aes_key)
+        utils.send_bytes_with_length(sock, header)
         utils.send_bytes_with_length(sock, ciphertext)
-        print(f"[Alice] Sent ciphertext ({len(ciphertext)} bytes)")
+        if kind == "file":
+            print(f"[Alice] Sent file '{name}' as ciphertext ({len(ciphertext)} bytes)")
+        else:
+            print(f"[Alice] Sent text message as ciphertext ({len(ciphertext)} bytes)")
 
 
 if __name__ == "__main__":
