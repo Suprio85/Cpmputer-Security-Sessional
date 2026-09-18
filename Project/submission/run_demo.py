@@ -20,6 +20,12 @@ BRIDGE = 'mac-br'
 
 
 def run_case(folder,vulnerable):
+    os.environ['MAC_CASE'] = 'Without defense' if vulnerable else 'With defense'
+
+    def show_summary(stage,counts):
+        print(f"\n{'Case':<18} {'Stage':<12} {'Bob':>8} {'Attacker':>13}",flush=True)
+        print(f"{os.environ['MAC_CASE']:<18} {stage:<12} {counts['bob']:>5}/10 {counts['attacker']:>10}/10\n",flush=True)
+
     folder.mkdir()
     started = time.monotonic()
     names = [SWITCH] + [HOST_PREFIX + host for host in lab.HOSTS]
@@ -209,6 +215,7 @@ def run_case(folder,vulnerable):
                 )
             )
         baseline = lab.probe(folder,'baseline')
+        show_summary('Baseline',baseline)
 
         def bob_tx_count():
             link = json.loads(
@@ -229,12 +236,15 @@ def run_case(folder,vulnerable):
             if 'MAC_CONTROLLER evict=' in line
         ]
         attack = lab.probe(folder,'attack')
+        show_summary('After attack',attack)
         bob_tx_after = bob_tx_count()
 
-        lab.run(*lab.host_command('bob','learn','bob'))
+        os.environ['MAC_STAGE'] = 'Recovery learning'
+        lab.run(*lab.host_command('bob','learn','bob'),live=True)
         time.sleep(0.5)
         recovery_table = snapshot('recovery')
         recovery = lab.probe(folder,'recovery')
+        show_summary('Recovery',recovery)
         flows = ofctl('dump-flows')
         flow_rows = [line for line in flows.splitlines() if 'actions=' in line]
         elapsed = time.monotonic() - started
@@ -483,6 +493,8 @@ def write_results(root,reports,output):
         ],
         configuration,
     )
+    case_order = {label:index for index,(_,label) in enumerate(cases)}
+    frames.sort(key=lambda row:(case_order[row[0]],float(row[8])))
     save(
         'RECEIVED_FRAMES.csv',
         [
@@ -514,6 +526,8 @@ def main():
     root = lab.ROOT / 'results' / ('demo-' + time.strftime('%Y%m%d-%H%M%S'))
     root.mkdir(parents=True)
     reports = {}
+    print('Time,Case,Stage,Event,Host,Source MAC,Destination MAC,Frame label,Bytes',
+          file=sys.stderr,flush=True)
     with tempfile.TemporaryDirectory(prefix='mac-run-') as working:
         work = Path(working)
         try:

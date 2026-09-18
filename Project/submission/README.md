@@ -104,3 +104,15 @@ Run `python3 lab.py preview` in Ubuntu, or `python lab.py preview` on Windows. N
 | Hex output | Exact bytes passed to the raw socket by the live sender. |
 
 Show fair_controller.inc for the defense: independently count entries by port, remove the oldest dynamic entry on a largest contributing port, then let OVS insert the new source. Compare the controller eviction count in OVERALL_COMPARISON.csv with Bob's preserved entry in WITH_DEFENSE.csv. This demonstrates the stated three-port experiment on the modified switch, not immunity under all possible topologies.
+
+## Live frame output
+
+The demo prints CSV-style events as frames are sent and captured:
+
+`Time,Case,Stage,Event,Host,Source MAC,Destination MAC,Frame label,Bytes`
+
+A Sent row confirms the host's raw-socket send completed. A Received row comes from that host's receiving socket. Observation frames are captured at Bob and the attacker; flooding frames are captured at Alice. Learning transmissions are shown, but their receptions are not captured. Match the case, stage and label to follow a frame. No Received row is invented for a host receiving zero frames; consult the case CSV for its zero count.
+
+RECEIVED_FRAMES.csv is sorted by capture timestamp within each case, including existing results updated during this change. These are host observation times, not hardware wire timestamps. Concurrent processes may print closely spaced live events out of timestamp order; the saved CSV is sorted. Probe sequence numbers restart in each stage.
+
+The live event stream uses stderr so sender metadata remains separate. To save terminal output if desired: `sudo python3 run_demo.py 2>&1 | tee live-demo.txt`.

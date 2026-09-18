@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import json
+import csv
+import os
 import socket
 import struct
 import subprocess
@@ -15,8 +17,9 @@ HOSTS = {
 ROOT = Path(__file__).resolve().parent
 
 
-def run(*args):
-    process = subprocess.run(args,text=True,capture_output=True,timeout=120)
+def run(*args,live=False):
+    process = subprocess.run(args,text=True,stdout=subprocess.PIPE,
+                             stderr=None if live else subprocess.PIPE,timeout=120)
     if process.returncode:
         raise RuntimeError(f'{args}: {process.stderr or process.stdout}')
     return process.stdout.strip()
@@ -37,6 +40,17 @@ def host_command(host,*args):
 
 def mac_bytes(value):
     return bytes.fromhex(value.replace(':',''))
+
+
+def frame_event(event,host,frame,timestamp):
+    if not os.environ.get('MAC_CASE'):
+        return
+    csv.writer(sys.stderr).writerow([
+        f'{timestamp:.6f}',os.environ['MAC_CASE'],os.environ['MAC_STAGE'],
+        event,host,frame[6:12].hex(':'),frame[:6].hex(':'),
+        frame[14:].rstrip(b'\0').decode(),len(frame),
+    ])
+    sys.stderr.flush()
 
 
 def build_frame(mode,sequence=0,host='alice'):
@@ -108,9 +122,11 @@ def worker(args):
                 )
                 matched = match_probe if mode == 'capture' else match_flood
                 if matched:
+                    timestamp = time.time()
+                    frame_event('Received',args[2],frame,timestamp)
                     records.append(
                         {
-                            'time': time.time(),
+                            'time': timestamp,
                             'frame_hex': frame.hex(),
                             'payload': frame[14:].rstrip(b'\0').decode(),
                         }
@@ -131,6 +147,8 @@ def worker(args):
             frame = build_frame(mode,i,args[1] if mode == 'learn' else 'alice')
             if sock.send(frame) != len(frame):
                 raise RuntimeError('Incomplete Ethernet frame transmission')
+            host = 'attacker' if mode == 'flood' else 'alice' if mode == 'probe' else args[1]
+            frame_event('Sent',host,frame,time.time())
             sources.add(frame[6:12])
             time.sleep(1 / rate)
         print(
@@ -149,21 +167,23 @@ def worker(args):
 
 
 def learn():
+    os.environ['MAC_STAGE'] = 'Initial learning'
     for host in HOSTS:
-        run(*host_command(host,'learn',host))
+        run(*host_command(host,'learn',host),live=True)
     time.sleep(0.5)
 
 
 def flood(folder):
+    os.environ['MAC_STAGE'] = 'MAC flooding'
     output = folder / 'attack-flood-alice.json'
-    process = subprocess.Popen(host_command('alice','capture_flood',str(output)))
+    process = subprocess.Popen(host_command('alice','capture_flood',str(output),'alice'))
     try:
         deadline = time.monotonic() + 5
         while not output.with_suffix('.ready').exists():
             if time.monotonic() > deadline or process.poll() is not None:
                 raise RuntimeError('Flood capture did not become ready')
             time.sleep(0.05)
-        sender = run(*host_command('attacker','flood'))
+        sender = run(*host_command('attacker','flood'),live=True)
         (folder / 'attack-flood-sender.json').write_text(sender + '\n')
         if process.wait(timeout=6) != 0:
             raise RuntimeError('Flood capture failed')
@@ -194,11 +214,13 @@ def flood(folder):
 
 
 def probe(folder,phase):
+    os.environ['MAC_STAGE'] = {'baseline': 'Baseline','attack': 'After attack',
+                               'recovery': 'Recovery'}[phase]
     processes = []
     for host in('bob','attacker'):
         output = folder / f'{phase}-{host}.json'
         processes.append(
-            (host,output,subprocess.Popen(host_command(host,'capture',str(output))))
+            (host,output,subprocess.Popen(host_command(host,'capture',str(output),host)))
         )
     try:
         deadline = time.monotonic() + 5
@@ -210,7 +232,7 @@ def probe(folder,phase):
             ):
                 raise RuntimeError('Capture did not become ready')
             time.sleep(0.05)
-        sender = run(*host_command('alice','probe'))
+        sender = run(*host_command('alice','probe'),live=True)
         (folder / f'{phase}-sender.json').write_text(sender + '\n')
         result = {}
         for host,output,process in processes:
