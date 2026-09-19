@@ -100,7 +100,7 @@ def main():
     root.mkdir(parents=True)
     sequence = 0
     reports = {}
-    print('Type a message at each phase. Enter /next to continue or /quit to stop.')
+    print('Type a message at each phase. Enter /next to continue or /quit to stop :=')
     with (root / 'LIVE_MESSAGES.csv').open('w',newline='',encoding='utf-8-sig') as log:
         writer = csv.writer(log)
         writer.writerow(['Case','Stage','Sequence','Message','Bob received','Attacker received',
