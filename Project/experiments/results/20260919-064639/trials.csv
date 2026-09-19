@@ -1,0 +1,19 @@
+false_sources,case,repeat,table_entries,bob_entry,probes_sent,bob_received,attacker_received,exposure_percent,controller_evictions,checks_passed
+0,Without defense,1,3,Present,10,10,0,0.0,0,True
+0,With defense,1,3,Present,10,10,0,0.0,0,True
+16,Without defense,1,19,Present,10,10,0,0.0,0,True
+16,With defense,1,19,Present,10,10,0,0.0,0,True
+32,Without defense,1,35,Present,10,10,0,0.0,0,True
+32,With defense,1,35,Present,10,10,0,0.0,0,True
+60,Without defense,1,63,Present,10,10,0,0.0,0,True
+60,With defense,1,63,Present,10,10,0,0.0,0,True
+61,Without defense,1,64,Present,10,10,0,0.0,0,True
+61,With defense,1,64,Present,10,10,0,0.0,0,True
+62,Without defense,1,64,Absent,10,10,10,100.0,0,True
+62,With defense,1,64,Present,10,10,0,0.0,1,True
+64,Without defense,1,64,Absent,10,10,10,100.0,0,True
+64,With defense,1,64,Present,10,10,0,0.0,3,True
+128,Without defense,1,64,Absent,10,10,10,100.0,0,True
+128,With defense,1,64,Present,10,10,0,0.0,67,True
+256,Without defense,1,64,Absent,10,10,10,100.0,0,True
+256,With defense,1,64,Present,10,10,0,0.0,195,True

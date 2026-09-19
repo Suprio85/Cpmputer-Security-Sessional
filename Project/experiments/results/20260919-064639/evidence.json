@@ -1,0 +1,2224 @@
+[
+  {
+    "trial": {
+      "false_sources": 0,
+      "case": "Without defense",
+      "repeat": 1,
+      "table_entries": 3,
+      "bob_entry": "Present",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 0,
+      "exposure_percent": 0.0,
+      "controller_evictions": 0,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 0,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": false,
+      "defense_enabled": false,
+      "controller_evictions_during_attack": 0,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    2     0  02:40:06:00:00:02    8\n    3     0  02:40:06:00:00:03    8\n    1     0  02:40:06:00:00:01    6\n",
+    "bob_capture": [
+      {
+        "time": 1789778808.9771712,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789778809.0313065,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789778809.0844965,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789778809.1352146,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789778809.188171,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789778809.240958,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789778809.2943203,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789778809.347342,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789778809.4007897,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789778809.4537525,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": []
+  },
+  {
+    "trial": {
+      "false_sources": 0,
+      "case": "With defense",
+      "repeat": 1,
+      "table_entries": 3,
+      "bob_entry": "Present",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 0,
+      "exposure_percent": 0.0,
+      "controller_evictions": 0,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 0,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": false,
+      "defense_enabled": true,
+      "controller_evictions_during_attack": 0,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    2     0  02:40:06:00:00:02    8\n    3     0  02:40:06:00:00:03    8\n    1     0  02:40:06:00:00:01    6\n",
+    "bob_capture": [
+      {
+        "time": 1789778824.299002,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789778824.3522747,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789778824.4054596,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789778824.4568002,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789778824.5101047,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789778824.5612743,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789778824.6142607,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789778824.6673944,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789778824.718227,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789778824.7714531,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": []
+  },
+  {
+    "trial": {
+      "false_sources": 16,
+      "case": "Without defense",
+      "repeat": 1,
+      "table_entries": 19,
+      "bob_entry": "Present",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 0,
+      "exposure_percent": 0.0,
+      "controller_evictions": 0,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 16,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": false,
+      "defense_enabled": false,
+      "controller_evictions_during_attack": 0,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    2     0  02:40:06:00:00:02    8\n    3     0  02:40:06:00:00:03    8\n    1     0  02:40:06:00:00:01    7\n    3     0  02:fa:00:00:00:00    3\n    3     0  02:fa:00:00:00:01    3\n    3     0  02:fa:00:00:00:02    3\n    3     0  02:fa:00:00:00:03    3\n    3     0  02:fa:00:00:00:04    3\n    3     0  02:fa:00:00:00:05    3\n    3     0  02:fa:00:00:00:06    3\n    3     0  02:fa:00:00:00:07    3\n    3     0  02:fa:00:00:00:08    3\n    3     0  02:fa:00:00:00:09    3\n    3     0  02:fa:00:00:00:0a    3\n    3     0  02:fa:00:00:00:0b    3\n    3     0  02:fa:00:00:00:0c    3\n    3     0  02:fa:00:00:00:0d    3\n    3     0  02:fa:00:00:00:0e    3\n    3     0  02:fa:00:00:00:0f    3\n",
+    "bob_capture": [
+      {
+        "time": 1789778841.051626,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789778840.1789222,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789778840.231596,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789778840.2831874,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789778840.3364174,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789778840.3877764,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789778840.4390197,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789778840.4922404,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789778840.545509,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789778840.5991766,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": []
+  },
+  {
+    "trial": {
+      "false_sources": 16,
+      "case": "With defense",
+      "repeat": 1,
+      "table_entries": 19,
+      "bob_entry": "Present",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 0,
+      "exposure_percent": 0.0,
+      "controller_evictions": 0,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 16,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": false,
+      "defense_enabled": true,
+      "controller_evictions_during_attack": 0,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    2     0  02:40:06:00:00:02    8\n    3     0  02:40:06:00:00:03    8\n    1     0  02:40:06:00:00:01    6\n    3     0  02:fa:00:00:00:00    3\n    3     0  02:fa:00:00:00:01    3\n    3     0  02:fa:00:00:00:02    3\n    3     0  02:fa:00:00:00:03    3\n    3     0  02:fa:00:00:00:04    3\n    3     0  02:fa:00:00:00:05    3\n    3     0  02:fa:00:00:00:06    3\n    3     0  02:fa:00:00:00:07    3\n    3     0  02:fa:00:00:00:08    3\n    3     0  02:fa:00:00:00:09    3\n    3     0  02:fa:00:00:00:0a    3\n    3     0  02:fa:00:00:00:0b    3\n    3     0  02:fa:00:00:00:0c    3\n    3     0  02:fa:00:00:00:0d    3\n    3     0  02:fa:00:00:00:0e    3\n    3     0  02:fa:00:00:00:0f    3\n",
+    "bob_capture": [
+      {
+        "time": 1789778857.1557567,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789778857.2094712,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789778857.26288,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789778857.315405,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789778857.3691242,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789778857.422767,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789778857.4748733,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789778857.5283852,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789778857.5796528,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789778857.6330907,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": []
+  },
+  {
+    "trial": {
+      "false_sources": 32,
+      "case": "Without defense",
+      "repeat": 1,
+      "table_entries": 35,
+      "bob_entry": "Present",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 0,
+      "exposure_percent": 0.0,
+      "controller_evictions": 0,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 32,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": false,
+      "defense_enabled": false,
+      "controller_evictions_during_attack": 0,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    2     0  02:40:06:00:00:02    8\n    3     0  02:40:06:00:00:03    8\n    1     0  02:40:06:00:00:01    6\n    3     0  02:fa:00:00:00:00    3\n    3     0  02:fa:00:00:00:01    3\n    3     0  02:fa:00:00:00:02    3\n    3     0  02:fa:00:00:00:03    3\n    3     0  02:fa:00:00:00:04    3\n    3     0  02:fa:00:00:00:05    3\n    3     0  02:fa:00:00:00:06    3\n    3     0  02:fa:00:00:00:07    3\n    3     0  02:fa:00:00:00:08    3\n    3     0  02:fa:00:00:00:09    3\n    3     0  02:fa:00:00:00:0a    3\n    3     0  02:fa:00:00:00:0b    3\n    3     0  02:fa:00:00:00:0c    3\n    3     0  02:fa:00:00:00:0d    3\n    3     0  02:fa:00:00:00:0e    3\n    3     0  02:fa:00:00:00:0f    3\n    3     0  02:fa:00:00:00:10    3\n    3     0  02:fa:00:00:00:11    3\n    3     0  02:fa:00:00:00:12    3\n    3     0  02:fa:00:00:00:13    3\n    3     0  02:fa:00:00:00:14    3\n    3     0  02:fa:00:00:00:15    3\n    3     0  02:fa:00:00:00:16    3\n    3     0  02:fa:00:00:00:17    3\n    3     0  02:fa:00:00:00:18    3\n    3     0  02:fa:00:00:00:19    3\n    3     0  02:fa:00:00:00:1a    3\n    3     0  02:fa:00:00:00:1b    3\n    3     0  02:fa:00:00:00:1c    3\n    3     0  02:fa:00:00:00:1d    3\n    3     0  02:fa:00:00:00:1e    3\n    3     0  02:fa:00:00:00:1f    3\n",
+    "bob_capture": [
+      {
+        "time": 1789778872.5982294,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789778872.6510098,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789778872.7046244,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789778872.7583392,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789778872.811903,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789778872.862245,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789778872.9161994,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789778872.9697964,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789778873.02287,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789778873.0737906,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": []
+  },
+  {
+    "trial": {
+      "false_sources": 32,
+      "case": "With defense",
+      "repeat": 1,
+      "table_entries": 35,
+      "bob_entry": "Present",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 0,
+      "exposure_percent": 0.0,
+      "controller_evictions": 0,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 32,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": false,
+      "defense_enabled": true,
+      "controller_evictions_during_attack": 0,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    2     0  02:40:06:00:00:02    8\n    3     0  02:40:06:00:00:03    8\n    1     0  02:40:06:00:00:01    6\n    3     0  02:fa:00:00:00:00    3\n    3     0  02:fa:00:00:00:01    3\n    3     0  02:fa:00:00:00:02    3\n    3     0  02:fa:00:00:00:03    3\n    3     0  02:fa:00:00:00:04    3\n    3     0  02:fa:00:00:00:05    3\n    3     0  02:fa:00:00:00:06    3\n    3     0  02:fa:00:00:00:07    3\n    3     0  02:fa:00:00:00:08    3\n    3     0  02:fa:00:00:00:09    3\n    3     0  02:fa:00:00:00:0a    3\n    3     0  02:fa:00:00:00:0b    3\n    3     0  02:fa:00:00:00:0c    3\n    3     0  02:fa:00:00:00:0d    3\n    3     0  02:fa:00:00:00:0e    3\n    3     0  02:fa:00:00:00:0f    3\n    3     0  02:fa:00:00:00:10    3\n    3     0  02:fa:00:00:00:11    3\n    3     0  02:fa:00:00:00:12    3\n    3     0  02:fa:00:00:00:13    3\n    3     0  02:fa:00:00:00:14    3\n    3     0  02:fa:00:00:00:15    3\n    3     0  02:fa:00:00:00:16    3\n    3     0  02:fa:00:00:00:17    3\n    3     0  02:fa:00:00:00:18    3\n    3     0  02:fa:00:00:00:19    3\n    3     0  02:fa:00:00:00:1a    3\n    3     0  02:fa:00:00:00:1b    3\n    3     0  02:fa:00:00:00:1c    3\n    3     0  02:fa:00:00:00:1d    3\n    3     0  02:fa:00:00:00:1e    3\n    3     0  02:fa:00:00:00:1f    3\n",
+    "bob_capture": [
+      {
+        "time": 1789778889.457907,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789778889.5110312,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789778889.564299,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789778889.6177301,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789778889.6709578,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789778889.7246745,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789778889.7778413,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789778889.8318658,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789778889.8850923,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789778889.9383638,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": []
+  },
+  {
+    "trial": {
+      "false_sources": 60,
+      "case": "Without defense",
+      "repeat": 1,
+      "table_entries": 63,
+      "bob_entry": "Present",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 0,
+      "exposure_percent": 0.0,
+      "controller_evictions": 0,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 60,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": false,
+      "defense_enabled": false,
+      "controller_evictions_during_attack": 0,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    2     0  02:40:06:00:00:02    8\n    3     0  02:40:06:00:00:03    8\n    1     0  02:40:06:00:00:01    6\n    3     0  02:fa:00:00:00:00    3\n    3     0  02:fa:00:00:00:01    3\n    3     0  02:fa:00:00:00:02    3\n    3     0  02:fa:00:00:00:03    3\n    3     0  02:fa:00:00:00:04    3\n    3     0  02:fa:00:00:00:05    3\n    3     0  02:fa:00:00:00:06    3\n    3     0  02:fa:00:00:00:07    3\n    3     0  02:fa:00:00:00:08    3\n    3     0  02:fa:00:00:00:09    3\n    3     0  02:fa:00:00:00:0a    3\n    3     0  02:fa:00:00:00:0b    3\n    3     0  02:fa:00:00:00:0c    3\n    3     0  02:fa:00:00:00:0d    3\n    3     0  02:fa:00:00:00:0e    3\n    3     0  02:fa:00:00:00:0f    3\n    3     0  02:fa:00:00:00:10    3\n    3     0  02:fa:00:00:00:11    3\n    3     0  02:fa:00:00:00:12    3\n    3     0  02:fa:00:00:00:13    3\n    3     0  02:fa:00:00:00:14    3\n    3     0  02:fa:00:00:00:15    3\n    3     0  02:fa:00:00:00:16    3\n    3     0  02:fa:00:00:00:17    3\n    3     0  02:fa:00:00:00:18    3\n    3     0  02:fa:00:00:00:19    3\n    3     0  02:fa:00:00:00:1a    3\n    3     0  02:fa:00:00:00:1b    3\n    3     0  02:fa:00:00:00:1c    3\n    3     0  02:fa:00:00:00:1d    3\n    3     0  02:fa:00:00:00:1e    3\n    3     0  02:fa:00:00:00:1f    3\n    3     0  02:fa:00:00:00:20    3\n    3     0  02:fa:00:00:00:21    3\n    3     0  02:fa:00:00:00:22    3\n    3     0  02:fa:00:00:00:23    3\n    3     0  02:fa:00:00:00:24    3\n    3     0  02:fa:00:00:00:25    3\n    3     0  02:fa:00:00:00:26    3\n    3     0  02:fa:00:00:00:27    3\n    3     0  02:fa:00:00:00:28    3\n    3     0  02:fa:00:00:00:29    3\n    3     0  02:fa:00:00:00:2a    3\n    3     0  02:fa:00:00:00:2b    3\n    3     0  02:fa:00:00:00:2c    3\n    3     0  02:fa:00:00:00:2d    3\n    3     0  02:fa:00:00:00:2e    3\n    3     0  02:fa:00:00:00:2f    3\n    3     0  02:fa:00:00:00:30    3\n    3     0  02:fa:00:00:00:31    3\n    3     0  02:fa:00:00:00:32    3\n    3     0  02:fa:00:00:00:33    3\n    3     0  02:fa:00:00:00:34    3\n    3     0  02:fa:00:00:00:35    3\n    3     0  02:fa:00:00:00:36    3\n    3     0  02:fa:00:00:00:37    3\n    3     0  02:fa:00:00:00:38    3\n    3     0  02:fa:00:00:00:39    3\n    3     0  02:fa:00:00:00:3a    3\n    3     0  02:fa:00:00:00:3b    3\n",
+    "bob_capture": [
+      {
+        "time": 1789778904.9091754,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789778904.9622066,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789778905.0153978,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789778905.0686014,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789778905.1217785,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789778905.1728632,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789778905.223448,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789778905.27653,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789778905.3276515,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789778905.3807242,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": []
+  },
+  {
+    "trial": {
+      "false_sources": 60,
+      "case": "With defense",
+      "repeat": 1,
+      "table_entries": 63,
+      "bob_entry": "Present",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 0,
+      "exposure_percent": 0.0,
+      "controller_evictions": 0,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 60,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": false,
+      "defense_enabled": true,
+      "controller_evictions_during_attack": 0,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    2     0  02:40:06:00:00:02    8\n    3     0  02:40:06:00:00:03    8\n    1     0  02:40:06:00:00:01    6\n    3     0  02:fa:00:00:00:00    3\n    3     0  02:fa:00:00:00:01    3\n    3     0  02:fa:00:00:00:02    3\n    3     0  02:fa:00:00:00:03    3\n    3     0  02:fa:00:00:00:04    3\n    3     0  02:fa:00:00:00:05    3\n    3     0  02:fa:00:00:00:06    3\n    3     0  02:fa:00:00:00:07    3\n    3     0  02:fa:00:00:00:08    3\n    3     0  02:fa:00:00:00:09    3\n    3     0  02:fa:00:00:00:0a    3\n    3     0  02:fa:00:00:00:0b    3\n    3     0  02:fa:00:00:00:0c    3\n    3     0  02:fa:00:00:00:0d    3\n    3     0  02:fa:00:00:00:0e    3\n    3     0  02:fa:00:00:00:0f    3\n    3     0  02:fa:00:00:00:10    3\n    3     0  02:fa:00:00:00:11    3\n    3     0  02:fa:00:00:00:12    3\n    3     0  02:fa:00:00:00:13    3\n    3     0  02:fa:00:00:00:14    3\n    3     0  02:fa:00:00:00:15    3\n    3     0  02:fa:00:00:00:16    3\n    3     0  02:fa:00:00:00:17    3\n    3     0  02:fa:00:00:00:18    3\n    3     0  02:fa:00:00:00:19    3\n    3     0  02:fa:00:00:00:1a    3\n    3     0  02:fa:00:00:00:1b    3\n    3     0  02:fa:00:00:00:1c    3\n    3     0  02:fa:00:00:00:1d    3\n    3     0  02:fa:00:00:00:1e    3\n    3     0  02:fa:00:00:00:1f    3\n    3     0  02:fa:00:00:00:20    3\n    3     0  02:fa:00:00:00:21    3\n    3     0  02:fa:00:00:00:22    3\n    3     0  02:fa:00:00:00:23    3\n    3     0  02:fa:00:00:00:24    3\n    3     0  02:fa:00:00:00:25    3\n    3     0  02:fa:00:00:00:26    3\n    3     0  02:fa:00:00:00:27    3\n    3     0  02:fa:00:00:00:28    3\n    3     0  02:fa:00:00:00:29    3\n    3     0  02:fa:00:00:00:2a    3\n    3     0  02:fa:00:00:00:2b    3\n    3     0  02:fa:00:00:00:2c    3\n    3     0  02:fa:00:00:00:2d    3\n    3     0  02:fa:00:00:00:2e    3\n    3     0  02:fa:00:00:00:2f    3\n    3     0  02:fa:00:00:00:30    3\n    3     0  02:fa:00:00:00:31    3\n    3     0  02:fa:00:00:00:32    3\n    3     0  02:fa:00:00:00:33    3\n    3     0  02:fa:00:00:00:34    3\n    3     0  02:fa:00:00:00:35    3\n    3     0  02:fa:00:00:00:36    3\n    3     0  02:fa:00:00:00:37    3\n    3     0  02:fa:00:00:00:38    3\n    3     0  02:fa:00:00:00:39    3\n    3     0  02:fa:00:00:00:3a    3\n    3     0  02:fa:00:00:00:3b    3\n",
+    "bob_capture": [
+      {
+        "time": 1789778922.0584877,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789778922.112252,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789778922.165401,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789778922.2188022,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789778922.2723587,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789778922.3265402,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789778922.3787458,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789778922.4321406,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789778922.4825878,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789778922.5362568,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": []
+  },
+  {
+    "trial": {
+      "false_sources": 61,
+      "case": "Without defense",
+      "repeat": 1,
+      "table_entries": 64,
+      "bob_entry": "Present",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 0,
+      "exposure_percent": 0.0,
+      "controller_evictions": 0,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 61,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": false,
+      "defense_enabled": false,
+      "controller_evictions_during_attack": 0,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    2     0  02:40:06:00:00:02    9\n    3     0  02:40:06:00:00:03    9\n    1     0  02:40:06:00:00:01    7\n    3     0  02:fa:00:00:00:00    4\n    3     0  02:fa:00:00:00:01    4\n    3     0  02:fa:00:00:00:02    4\n    3     0  02:fa:00:00:00:03    4\n    3     0  02:fa:00:00:00:04    4\n    3     0  02:fa:00:00:00:05    4\n    3     0  02:fa:00:00:00:06    4\n    3     0  02:fa:00:00:00:07    4\n    3     0  02:fa:00:00:00:08    4\n    3     0  02:fa:00:00:00:09    4\n    3     0  02:fa:00:00:00:0a    4\n    3     0  02:fa:00:00:00:0b    4\n    3     0  02:fa:00:00:00:0c    4\n    3     0  02:fa:00:00:00:0d    4\n    3     0  02:fa:00:00:00:0e    4\n    3     0  02:fa:00:00:00:0f    4\n    3     0  02:fa:00:00:00:10    4\n    3     0  02:fa:00:00:00:11    4\n    3     0  02:fa:00:00:00:12    4\n    3     0  02:fa:00:00:00:13    4\n    3     0  02:fa:00:00:00:14    4\n    3     0  02:fa:00:00:00:15    4\n    3     0  02:fa:00:00:00:16    4\n    3     0  02:fa:00:00:00:17    4\n    3     0  02:fa:00:00:00:18    4\n    3     0  02:fa:00:00:00:19    4\n    3     0  02:fa:00:00:00:1a    4\n    3     0  02:fa:00:00:00:1b    4\n    3     0  02:fa:00:00:00:1c    4\n    3     0  02:fa:00:00:00:1d    4\n    3     0  02:fa:00:00:00:1e    4\n    3     0  02:fa:00:00:00:1f    4\n    3     0  02:fa:00:00:00:20    4\n    3     0  02:fa:00:00:00:21    4\n    3     0  02:fa:00:00:00:22    4\n    3     0  02:fa:00:00:00:23    4\n    3     0  02:fa:00:00:00:24    4\n    3     0  02:fa:00:00:00:25    4\n    3     0  02:fa:00:00:00:26    4\n    3     0  02:fa:00:00:00:27    4\n    3     0  02:fa:00:00:00:28    4\n    3     0  02:fa:00:00:00:29    4\n    3     0  02:fa:00:00:00:2a    4\n    3     0  02:fa:00:00:00:2b    4\n    3     0  02:fa:00:00:00:2c    4\n    3     0  02:fa:00:00:00:2d    4\n    3     0  02:fa:00:00:00:2e    4\n    3     0  02:fa:00:00:00:2f    4\n    3     0  02:fa:00:00:00:30    4\n    3     0  02:fa:00:00:00:31    4\n    3     0  02:fa:00:00:00:32    4\n    3     0  02:fa:00:00:00:33    4\n    3     0  02:fa:00:00:00:34    4\n    3     0  02:fa:00:00:00:35    4\n    3     0  02:fa:00:00:00:36    4\n    3     0  02:fa:00:00:00:37    4\n    3     0  02:fa:00:00:00:38    4\n    3     0  02:fa:00:00:00:39    4\n    3     0  02:fa:00:00:00:3a    4\n    3     0  02:fa:00:00:00:3b    4\n    3     0  02:fa:00:00:00:3c    4\n",
+    "bob_capture": [
+      {
+        "time": 1789778937.634719,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789778937.6873443,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789778937.7402737,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789778937.7935152,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789778937.8456347,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789778937.8987234,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789778937.952956,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789778938.0057936,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789778938.056788,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789778938.1084526,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": []
+  },
+  {
+    "trial": {
+      "false_sources": 61,
+      "case": "With defense",
+      "repeat": 1,
+      "table_entries": 64,
+      "bob_entry": "Present",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 0,
+      "exposure_percent": 0.0,
+      "controller_evictions": 0,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 61,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": false,
+      "defense_enabled": true,
+      "controller_evictions_during_attack": 0,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    2     0  02:40:06:00:00:02    9\n    3     0  02:40:06:00:00:03    8\n    1     0  02:40:06:00:00:01    7\n    3     0  02:fa:00:00:00:00    4\n    3     0  02:fa:00:00:00:01    4\n    3     0  02:fa:00:00:00:02    4\n    3     0  02:fa:00:00:00:03    4\n    3     0  02:fa:00:00:00:04    4\n    3     0  02:fa:00:00:00:05    4\n    3     0  02:fa:00:00:00:06    4\n    3     0  02:fa:00:00:00:07    4\n    3     0  02:fa:00:00:00:08    4\n    3     0  02:fa:00:00:00:09    4\n    3     0  02:fa:00:00:00:0a    4\n    3     0  02:fa:00:00:00:0b    4\n    3     0  02:fa:00:00:00:0c    4\n    3     0  02:fa:00:00:00:0d    4\n    3     0  02:fa:00:00:00:0e    4\n    3     0  02:fa:00:00:00:0f    4\n    3     0  02:fa:00:00:00:10    4\n    3     0  02:fa:00:00:00:11    4\n    3     0  02:fa:00:00:00:12    4\n    3     0  02:fa:00:00:00:13    4\n    3     0  02:fa:00:00:00:14    4\n    3     0  02:fa:00:00:00:15    4\n    3     0  02:fa:00:00:00:16    4\n    3     0  02:fa:00:00:00:17    4\n    3     0  02:fa:00:00:00:18    4\n    3     0  02:fa:00:00:00:19    4\n    3     0  02:fa:00:00:00:1a    4\n    3     0  02:fa:00:00:00:1b    4\n    3     0  02:fa:00:00:00:1c    4\n    3     0  02:fa:00:00:00:1d    4\n    3     0  02:fa:00:00:00:1e    4\n    3     0  02:fa:00:00:00:1f    4\n    3     0  02:fa:00:00:00:20    4\n    3     0  02:fa:00:00:00:21    4\n    3     0  02:fa:00:00:00:22    4\n    3     0  02:fa:00:00:00:23    4\n    3     0  02:fa:00:00:00:24    4\n    3     0  02:fa:00:00:00:25    4\n    3     0  02:fa:00:00:00:26    4\n    3     0  02:fa:00:00:00:27    4\n    3     0  02:fa:00:00:00:28    4\n    3     0  02:fa:00:00:00:29    4\n    3     0  02:fa:00:00:00:2a    4\n    3     0  02:fa:00:00:00:2b    4\n    3     0  02:fa:00:00:00:2c    4\n    3     0  02:fa:00:00:00:2d    4\n    3     0  02:fa:00:00:00:2e    4\n    3     0  02:fa:00:00:00:2f    4\n    3     0  02:fa:00:00:00:30    4\n    3     0  02:fa:00:00:00:31    4\n    3     0  02:fa:00:00:00:32    4\n    3     0  02:fa:00:00:00:33    4\n    3     0  02:fa:00:00:00:34    4\n    3     0  02:fa:00:00:00:35    4\n    3     0  02:fa:00:00:00:36    4\n    3     0  02:fa:00:00:00:37    4\n    3     0  02:fa:00:00:00:38    4\n    3     0  02:fa:00:00:00:39    4\n    3     0  02:fa:00:00:00:3a    4\n    3     0  02:fa:00:00:00:3b    4\n    3     0  02:fa:00:00:00:3c    4\n",
+    "bob_capture": [
+      {
+        "time": 1789778954.7249773,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789778954.7756782,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789778954.8290725,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789778954.882307,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789778954.935316,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789778954.9887924,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789778955.0419707,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789778955.095007,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789778955.1483119,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789778955.200664,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": []
+  },
+  {
+    "trial": {
+      "false_sources": 62,
+      "case": "Without defense",
+      "repeat": 1,
+      "table_entries": 64,
+      "bob_entry": "Absent",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 10,
+      "exposure_percent": 100.0,
+      "controller_evictions": 0,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 62,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 10
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": true,
+      "defense_enabled": false,
+      "controller_evictions_during_attack": 0,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    3     0  02:40:06:00:00:03    8\n    1     0  02:40:06:00:00:01    7\n    3     0  02:fa:00:00:00:00    4\n    3     0  02:fa:00:00:00:01    4\n    3     0  02:fa:00:00:00:02    4\n    3     0  02:fa:00:00:00:03    4\n    3     0  02:fa:00:00:00:04    4\n    3     0  02:fa:00:00:00:05    4\n    3     0  02:fa:00:00:00:06    4\n    3     0  02:fa:00:00:00:07    4\n    3     0  02:fa:00:00:00:08    4\n    3     0  02:fa:00:00:00:09    4\n    3     0  02:fa:00:00:00:0a    4\n    3     0  02:fa:00:00:00:0b    4\n    3     0  02:fa:00:00:00:0c    4\n    3     0  02:fa:00:00:00:0d    4\n    3     0  02:fa:00:00:00:0e    4\n    3     0  02:fa:00:00:00:0f    4\n    3     0  02:fa:00:00:00:10    4\n    3     0  02:fa:00:00:00:11    4\n    3     0  02:fa:00:00:00:12    4\n    3     0  02:fa:00:00:00:13    4\n    3     0  02:fa:00:00:00:14    4\n    3     0  02:fa:00:00:00:15    4\n    3     0  02:fa:00:00:00:16    4\n    3     0  02:fa:00:00:00:17    4\n    3     0  02:fa:00:00:00:18    4\n    3     0  02:fa:00:00:00:19    4\n    3     0  02:fa:00:00:00:1a    4\n    3     0  02:fa:00:00:00:1b    4\n    3     0  02:fa:00:00:00:1c    4\n    3     0  02:fa:00:00:00:1d    4\n    3     0  02:fa:00:00:00:1e    4\n    3     0  02:fa:00:00:00:1f    4\n    3     0  02:fa:00:00:00:20    4\n    3     0  02:fa:00:00:00:21    4\n    3     0  02:fa:00:00:00:22    4\n    3     0  02:fa:00:00:00:23    4\n    3     0  02:fa:00:00:00:24    4\n    3     0  02:fa:00:00:00:25    4\n    3     0  02:fa:00:00:00:26    4\n    3     0  02:fa:00:00:00:27    4\n    3     0  02:fa:00:00:00:28    4\n    3     0  02:fa:00:00:00:29    4\n    3     0  02:fa:00:00:00:2a    4\n    3     0  02:fa:00:00:00:2b    4\n    3     0  02:fa:00:00:00:2c    4\n    3     0  02:fa:00:00:00:2d    4\n    3     0  02:fa:00:00:00:2e    4\n    3     0  02:fa:00:00:00:2f    4\n    3     0  02:fa:00:00:00:30    4\n    3     0  02:fa:00:00:00:31    4\n    3     0  02:fa:00:00:00:32    4\n    3     0  02:fa:00:00:00:33    4\n    3     0  02:fa:00:00:00:34    4\n    3     0  02:fa:00:00:00:35    4\n    3     0  02:fa:00:00:00:36    4\n    3     0  02:fa:00:00:00:37    4\n    3     0  02:fa:00:00:00:38    4\n    3     0  02:fa:00:00:00:39    4\n    3     0  02:fa:00:00:00:3a    4\n    3     0  02:fa:00:00:00:3b    4\n    3     0  02:fa:00:00:00:3c    4\n    3     0  02:fa:00:00:00:3d    4\n",
+    "bob_capture": [
+      {
+        "time": 1789778970.2308881,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789778970.2844105,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789778970.3374357,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789778970.3908262,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789778970.4443383,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789778970.4974616,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789778970.5509248,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789778970.6032085,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789778970.6563704,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789778970.7090075,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": [
+      {
+        "time": 1789778970.2310407,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789778970.284449,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789778970.337526,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789778970.3907785,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789778970.4444935,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789778970.497484,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789778970.5509944,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789778970.603223,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789778970.6565297,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789778970.7091236,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ]
+  },
+  {
+    "trial": {
+      "false_sources": 62,
+      "case": "With defense",
+      "repeat": 1,
+      "table_entries": 64,
+      "bob_entry": "Present",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 0,
+      "exposure_percent": 0.0,
+      "controller_evictions": 1,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 62,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": false,
+      "defense_enabled": true,
+      "controller_evictions_during_attack": 1,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    2     0  02:40:06:00:00:02    8\n    1     0  02:40:06:00:00:01    6\n    3     0  02:fa:00:00:00:00    4\n    3     0  02:fa:00:00:00:01    4\n    3     0  02:fa:00:00:00:02    4\n    3     0  02:fa:00:00:00:03    4\n    3     0  02:fa:00:00:00:04    4\n    3     0  02:fa:00:00:00:05    4\n    3     0  02:fa:00:00:00:06    4\n    3     0  02:fa:00:00:00:07    4\n    3     0  02:fa:00:00:00:08    4\n    3     0  02:fa:00:00:00:09    4\n    3     0  02:fa:00:00:00:0a    4\n    3     0  02:fa:00:00:00:0b    4\n    3     0  02:fa:00:00:00:0c    4\n    3     0  02:fa:00:00:00:0d    4\n    3     0  02:fa:00:00:00:0e    4\n    3     0  02:fa:00:00:00:0f    4\n    3     0  02:fa:00:00:00:10    4\n    3     0  02:fa:00:00:00:11    4\n    3     0  02:fa:00:00:00:12    4\n    3     0  02:fa:00:00:00:13    4\n    3     0  02:fa:00:00:00:14    4\n    3     0  02:fa:00:00:00:15    4\n    3     0  02:fa:00:00:00:16    4\n    3     0  02:fa:00:00:00:17    4\n    3     0  02:fa:00:00:00:18    4\n    3     0  02:fa:00:00:00:19    4\n    3     0  02:fa:00:00:00:1a    4\n    3     0  02:fa:00:00:00:1b    4\n    3     0  02:fa:00:00:00:1c    4\n    3     0  02:fa:00:00:00:1d    4\n    3     0  02:fa:00:00:00:1e    4\n    3     0  02:fa:00:00:00:1f    4\n    3     0  02:fa:00:00:00:20    4\n    3     0  02:fa:00:00:00:21    4\n    3     0  02:fa:00:00:00:22    4\n    3     0  02:fa:00:00:00:23    4\n    3     0  02:fa:00:00:00:24    4\n    3     0  02:fa:00:00:00:25    4\n    3     0  02:fa:00:00:00:26    4\n    3     0  02:fa:00:00:00:27    4\n    3     0  02:fa:00:00:00:28    4\n    3     0  02:fa:00:00:00:29    4\n    3     0  02:fa:00:00:00:2a    4\n    3     0  02:fa:00:00:00:2b    4\n    3     0  02:fa:00:00:00:2c    4\n    3     0  02:fa:00:00:00:2d    4\n    3     0  02:fa:00:00:00:2e    4\n    3     0  02:fa:00:00:00:2f    4\n    3     0  02:fa:00:00:00:30    4\n    3     0  02:fa:00:00:00:31    4\n    3     0  02:fa:00:00:00:32    4\n    3     0  02:fa:00:00:00:33    4\n    3     0  02:fa:00:00:00:34    4\n    3     0  02:fa:00:00:00:35    4\n    3     0  02:fa:00:00:00:36    4\n    3     0  02:fa:00:00:00:37    4\n    3     0  02:fa:00:00:00:38    4\n    3     0  02:fa:00:00:00:39    4\n    3     0  02:fa:00:00:00:3a    3\n    3     0  02:fa:00:00:00:3b    3\n    3     0  02:fa:00:00:00:3c    3\n    3     0  02:fa:00:00:00:3d    3\n",
+    "bob_capture": [
+      {
+        "time": 1789778985.8016331,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789778985.8545308,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789778985.908491,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789778985.9620528,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789778986.0151258,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789778986.0663676,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789778986.1204119,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789778986.1719754,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789778986.2246232,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789778986.278077,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": []
+  },
+  {
+    "trial": {
+      "false_sources": 64,
+      "case": "Without defense",
+      "repeat": 1,
+      "table_entries": 64,
+      "bob_entry": "Absent",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 10,
+      "exposure_percent": 100.0,
+      "controller_evictions": 0,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 64,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 10
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": true,
+      "defense_enabled": false,
+      "controller_evictions_during_attack": 0,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    3     0  02:fa:00:00:00:00    4\n    3     0  02:fa:00:00:00:01    4\n    3     0  02:fa:00:00:00:02    4\n    3     0  02:fa:00:00:00:03    4\n    3     0  02:fa:00:00:00:04    4\n    3     0  02:fa:00:00:00:05    4\n    3     0  02:fa:00:00:00:06    4\n    3     0  02:fa:00:00:00:07    4\n    3     0  02:fa:00:00:00:08    4\n    3     0  02:fa:00:00:00:09    4\n    3     0  02:fa:00:00:00:0a    4\n    3     0  02:fa:00:00:00:0b    4\n    3     0  02:fa:00:00:00:0c    4\n    3     0  02:fa:00:00:00:0d    4\n    3     0  02:fa:00:00:00:0e    4\n    3     0  02:fa:00:00:00:0f    4\n    3     0  02:fa:00:00:00:10    4\n    3     0  02:fa:00:00:00:11    4\n    3     0  02:fa:00:00:00:12    4\n    3     0  02:fa:00:00:00:13    4\n    3     0  02:fa:00:00:00:14    4\n    3     0  02:fa:00:00:00:15    4\n    3     0  02:fa:00:00:00:16    4\n    3     0  02:fa:00:00:00:17    4\n    3     0  02:fa:00:00:00:18    4\n    3     0  02:fa:00:00:00:19    4\n    3     0  02:fa:00:00:00:1a    4\n    3     0  02:fa:00:00:00:1b    4\n    3     0  02:fa:00:00:00:1c    4\n    3     0  02:fa:00:00:00:1d    4\n    3     0  02:fa:00:00:00:1e    4\n    3     0  02:fa:00:00:00:1f    4\n    3     0  02:fa:00:00:00:20    4\n    3     0  02:fa:00:00:00:21    4\n    3     0  02:fa:00:00:00:22    4\n    3     0  02:fa:00:00:00:23    4\n    3     0  02:fa:00:00:00:24    4\n    3     0  02:fa:00:00:00:25    4\n    3     0  02:fa:00:00:00:26    4\n    3     0  02:fa:00:00:00:27    4\n    3     0  02:fa:00:00:00:28    4\n    3     0  02:fa:00:00:00:29    4\n    3     0  02:fa:00:00:00:2a    4\n    3     0  02:fa:00:00:00:2b    4\n    3     0  02:fa:00:00:00:2c    4\n    3     0  02:fa:00:00:00:2d    4\n    3     0  02:fa:00:00:00:2e    4\n    3     0  02:fa:00:00:00:2f    4\n    3     0  02:fa:00:00:00:30    3\n    3     0  02:fa:00:00:00:31    3\n    3     0  02:fa:00:00:00:32    3\n    3     0  02:fa:00:00:00:33    3\n    3     0  02:fa:00:00:00:34    3\n    3     0  02:fa:00:00:00:35    3\n    3     0  02:fa:00:00:00:36    3\n    3     0  02:fa:00:00:00:37    3\n    3     0  02:fa:00:00:00:38    3\n    3     0  02:fa:00:00:00:39    3\n    3     0  02:fa:00:00:00:3a    3\n    3     0  02:fa:00:00:00:3b    3\n    3     0  02:fa:00:00:00:3c    3\n    3     0  02:fa:00:00:00:3d    3\n    3     0  02:fa:00:00:00:3e    3\n    3     0  02:fa:00:00:00:3f    3\n",
+    "bob_capture": [
+      {
+        "time": 1789779002.8810956,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789779002.9349463,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789779002.986446,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789779003.0395553,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789779003.0930297,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789779003.1464071,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789779003.1996088,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789779003.252897,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789779003.306272,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789779003.35924,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": [
+      {
+        "time": 1789779002.8813822,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789779002.934844,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789779002.9864657,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789779003.0397108,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789779003.093158,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789779003.1464925,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789779003.1997788,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789779003.2529252,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789779003.3063507,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789779003.3593016,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ]
+  },
+  {
+    "trial": {
+      "false_sources": 64,
+      "case": "With defense",
+      "repeat": 1,
+      "table_entries": 64,
+      "bob_entry": "Present",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 0,
+      "exposure_percent": 0.0,
+      "controller_evictions": 3,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 64,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": false,
+      "defense_enabled": true,
+      "controller_evictions_during_attack": 3,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    2     0  02:40:06:00:00:02    8\n    1     0  02:40:06:00:00:01    6\n    3     0  02:fa:00:00:00:02    4\n    3     0  02:fa:00:00:00:03    4\n    3     0  02:fa:00:00:00:04    4\n    3     0  02:fa:00:00:00:05    4\n    3     0  02:fa:00:00:00:06    4\n    3     0  02:fa:00:00:00:07    4\n    3     0  02:fa:00:00:00:08    4\n    3     0  02:fa:00:00:00:09    4\n    3     0  02:fa:00:00:00:0a    4\n    3     0  02:fa:00:00:00:0b    4\n    3     0  02:fa:00:00:00:0c    4\n    3     0  02:fa:00:00:00:0d    4\n    3     0  02:fa:00:00:00:0e    4\n    3     0  02:fa:00:00:00:0f    4\n    3     0  02:fa:00:00:00:10    4\n    3     0  02:fa:00:00:00:11    4\n    3     0  02:fa:00:00:00:12    4\n    3     0  02:fa:00:00:00:13    4\n    3     0  02:fa:00:00:00:14    4\n    3     0  02:fa:00:00:00:15    4\n    3     0  02:fa:00:00:00:16    4\n    3     0  02:fa:00:00:00:17    4\n    3     0  02:fa:00:00:00:18    4\n    3     0  02:fa:00:00:00:19    3\n    3     0  02:fa:00:00:00:1a    3\n    3     0  02:fa:00:00:00:1b    3\n    3     0  02:fa:00:00:00:1c    3\n    3     0  02:fa:00:00:00:1d    3\n    3     0  02:fa:00:00:00:1e    3\n    3     0  02:fa:00:00:00:1f    3\n    3     0  02:fa:00:00:00:20    3\n    3     0  02:fa:00:00:00:21    3\n    3     0  02:fa:00:00:00:22    3\n    3     0  02:fa:00:00:00:23    3\n    3     0  02:fa:00:00:00:24    3\n    3     0  02:fa:00:00:00:25    3\n    3     0  02:fa:00:00:00:26    3\n    3     0  02:fa:00:00:00:27    3\n    3     0  02:fa:00:00:00:28    3\n    3     0  02:fa:00:00:00:29    3\n    3     0  02:fa:00:00:00:2a    3\n    3     0  02:fa:00:00:00:2b    3\n    3     0  02:fa:00:00:00:2c    3\n    3     0  02:fa:00:00:00:2d    3\n    3     0  02:fa:00:00:00:2e    3\n    3     0  02:fa:00:00:00:2f    3\n    3     0  02:fa:00:00:00:30    3\n    3     0  02:fa:00:00:00:31    3\n    3     0  02:fa:00:00:00:32    3\n    3     0  02:fa:00:00:00:33    3\n    3     0  02:fa:00:00:00:34    3\n    3     0  02:fa:00:00:00:35    3\n    3     0  02:fa:00:00:00:36    3\n    3     0  02:fa:00:00:00:37    3\n    3     0  02:fa:00:00:00:38    3\n    3     0  02:fa:00:00:00:39    3\n    3     0  02:fa:00:00:00:3a    3\n    3     0  02:fa:00:00:00:3b    3\n    3     0  02:fa:00:00:00:3c    3\n    3     0  02:fa:00:00:00:3d    3\n    3     0  02:fa:00:00:00:3e    3\n    3     0  02:fa:00:00:00:3f    3\n",
+    "bob_capture": [
+      {
+        "time": 1789779018.4079618,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789779018.45999,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789779018.5130198,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789779018.5655282,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789779018.619345,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789779018.6719086,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789779018.7255476,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789779018.778425,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789779018.8307168,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789779018.8838878,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": []
+  },
+  {
+    "trial": {
+      "false_sources": 128,
+      "case": "Without defense",
+      "repeat": 1,
+      "table_entries": 64,
+      "bob_entry": "Absent",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 10,
+      "exposure_percent": 100.0,
+      "controller_evictions": 0,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 128,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 10
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": true,
+      "defense_enabled": false,
+      "controller_evictions_during_attack": 0,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    3     0  02:fa:00:00:00:40    3\n    3     0  02:fa:00:00:00:41    3\n    3     0  02:fa:00:00:00:42    3\n    3     0  02:fa:00:00:00:43    3\n    3     0  02:fa:00:00:00:44    3\n    3     0  02:fa:00:00:00:45    3\n    3     0  02:fa:00:00:00:46    3\n    3     0  02:fa:00:00:00:47    3\n    3     0  02:fa:00:00:00:48    3\n    3     0  02:fa:00:00:00:49    3\n    3     0  02:fa:00:00:00:4a    3\n    3     0  02:fa:00:00:00:4b    3\n    3     0  02:fa:00:00:00:4c    3\n    3     0  02:fa:00:00:00:4d    3\n    3     0  02:fa:00:00:00:4e    3\n    3     0  02:fa:00:00:00:4f    3\n    3     0  02:fa:00:00:00:50    3\n    3     0  02:fa:00:00:00:51    3\n    3     0  02:fa:00:00:00:52    3\n    3     0  02:fa:00:00:00:53    3\n    3     0  02:fa:00:00:00:54    3\n    3     0  02:fa:00:00:00:55    3\n    3     0  02:fa:00:00:00:56    3\n    3     0  02:fa:00:00:00:57    3\n    3     0  02:fa:00:00:00:58    3\n    3     0  02:fa:00:00:00:59    3\n    3     0  02:fa:00:00:00:5a    3\n    3     0  02:fa:00:00:00:5b    3\n    3     0  02:fa:00:00:00:5c    3\n    3     0  02:fa:00:00:00:5d    3\n    3     0  02:fa:00:00:00:5e    3\n    3     0  02:fa:00:00:00:5f    3\n    3     0  02:fa:00:00:00:60    3\n    3     0  02:fa:00:00:00:61    3\n    3     0  02:fa:00:00:00:62    3\n    3     0  02:fa:00:00:00:63    3\n    3     0  02:fa:00:00:00:64    3\n    3     0  02:fa:00:00:00:65    3\n    3     0  02:fa:00:00:00:66    3\n    3     0  02:fa:00:00:00:67    3\n    3     0  02:fa:00:00:00:68    3\n    3     0  02:fa:00:00:00:69    3\n    3     0  02:fa:00:00:00:6a    3\n    3     0  02:fa:00:00:00:6b    3\n    3     0  02:fa:00:00:00:6c    3\n    3     0  02:fa:00:00:00:6d    3\n    3     0  02:fa:00:00:00:6e    3\n    3     0  02:fa:00:00:00:6f    3\n    3     0  02:fa:00:00:00:70    3\n    3     0  02:fa:00:00:00:71    3\n    3     0  02:fa:00:00:00:72    3\n    3     0  02:fa:00:00:00:73    3\n    3     0  02:fa:00:00:00:74    3\n    3     0  02:fa:00:00:00:75    3\n    3     0  02:fa:00:00:00:76    3\n    3     0  02:fa:00:00:00:77    3\n    3     0  02:fa:00:00:00:78    3\n    3     0  02:fa:00:00:00:79    3\n    3     0  02:fa:00:00:00:7a    3\n    3     0  02:fa:00:00:00:7b    3\n    3     0  02:fa:00:00:00:7c    3\n    3     0  02:fa:00:00:00:7d    3\n    3     0  02:fa:00:00:00:7e    3\n    3     0  02:fa:00:00:00:7f    3\n",
+    "bob_capture": [
+      {
+        "time": 1789779035.607289,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789779035.6614134,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789779035.7143288,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789779035.7662466,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789779035.8172283,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789779035.8708448,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789779035.9217305,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789779035.9721847,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789779036.0255473,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789779036.0783262,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": [
+      {
+        "time": 1789779035.6073678,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789779035.6616168,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789779035.7143269,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789779035.7662694,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789779035.8172295,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789779035.8708713,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789779035.9219005,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789779035.972207,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789779036.0257223,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789779036.0783532,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ]
+  },
+  {
+    "trial": {
+      "false_sources": 128,
+      "case": "With defense",
+      "repeat": 1,
+      "table_entries": 64,
+      "bob_entry": "Present",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 0,
+      "exposure_percent": 0.0,
+      "controller_evictions": 67,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 128,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": false,
+      "defense_enabled": true,
+      "controller_evictions_during_attack": 67,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    2     0  02:40:06:00:00:02    9\n    1     0  02:40:06:00:00:01    7\n    3     0  02:fa:00:00:00:42    4\n    3     0  02:fa:00:00:00:43    4\n    3     0  02:fa:00:00:00:44    4\n    3     0  02:fa:00:00:00:45    4\n    3     0  02:fa:00:00:00:46    4\n    3     0  02:fa:00:00:00:47    4\n    3     0  02:fa:00:00:00:48    4\n    3     0  02:fa:00:00:00:49    4\n    3     0  02:fa:00:00:00:4a    4\n    3     0  02:fa:00:00:00:4b    4\n    3     0  02:fa:00:00:00:4c    4\n    3     0  02:fa:00:00:00:4d    4\n    3     0  02:fa:00:00:00:4e    4\n    3     0  02:fa:00:00:00:4f    4\n    3     0  02:fa:00:00:00:50    4\n    3     0  02:fa:00:00:00:51    4\n    3     0  02:fa:00:00:00:52    4\n    3     0  02:fa:00:00:00:53    4\n    3     0  02:fa:00:00:00:54    4\n    3     0  02:fa:00:00:00:55    4\n    3     0  02:fa:00:00:00:56    4\n    3     0  02:fa:00:00:00:57    4\n    3     0  02:fa:00:00:00:58    4\n    3     0  02:fa:00:00:00:59    4\n    3     0  02:fa:00:00:00:5a    4\n    3     0  02:fa:00:00:00:5b    4\n    3     0  02:fa:00:00:00:5c    4\n    3     0  02:fa:00:00:00:5d    4\n    3     0  02:fa:00:00:00:5e    4\n    3     0  02:fa:00:00:00:5f    4\n    3     0  02:fa:00:00:00:60    4\n    3     0  02:fa:00:00:00:61    4\n    3     0  02:fa:00:00:00:62    4\n    3     0  02:fa:00:00:00:63    4\n    3     0  02:fa:00:00:00:64    4\n    3     0  02:fa:00:00:00:65    4\n    3     0  02:fa:00:00:00:66    4\n    3     0  02:fa:00:00:00:67    3\n    3     0  02:fa:00:00:00:68    3\n    3     0  02:fa:00:00:00:69    3\n    3     0  02:fa:00:00:00:6a    3\n    3     0  02:fa:00:00:00:6b    3\n    3     0  02:fa:00:00:00:6c    3\n    3     0  02:fa:00:00:00:6d    3\n    3     0  02:fa:00:00:00:6e    3\n    3     0  02:fa:00:00:00:6f    3\n    3     0  02:fa:00:00:00:70    3\n    3     0  02:fa:00:00:00:71    3\n    3     0  02:fa:00:00:00:72    3\n    3     0  02:fa:00:00:00:73    3\n    3     0  02:fa:00:00:00:74    3\n    3     0  02:fa:00:00:00:75    3\n    3     0  02:fa:00:00:00:76    3\n    3     0  02:fa:00:00:00:77    3\n    3     0  02:fa:00:00:00:78    3\n    3     0  02:fa:00:00:00:79    3\n    3     0  02:fa:00:00:00:7a    3\n    3     0  02:fa:00:00:00:7b    3\n    3     0  02:fa:00:00:00:7c    3\n    3     0  02:fa:00:00:00:7d    3\n    3     0  02:fa:00:00:00:7e    3\n    3     0  02:fa:00:00:00:7f    3\n",
+    "bob_capture": [
+      {
+        "time": 1789779051.3340583,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789779051.3872285,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789779051.4391148,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789779051.4921763,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789779051.5456874,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789779051.5993745,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789779051.6524527,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789779051.7059035,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789779051.759133,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789779051.8125422,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": []
+  },
+  {
+    "trial": {
+      "false_sources": 256,
+      "case": "Without defense",
+      "repeat": 1,
+      "table_entries": 64,
+      "bob_entry": "Absent",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 10,
+      "exposure_percent": 100.0,
+      "controller_evictions": 0,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 256,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 10
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": true,
+      "defense_enabled": false,
+      "controller_evictions_during_attack": 0,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true,
+        "standard_demo_outcome": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    3     0  02:fa:00:00:00:c0    3\n    3     0  02:fa:00:00:00:c1    3\n    3     0  02:fa:00:00:00:c2    3\n    3     0  02:fa:00:00:00:c3    3\n    3     0  02:fa:00:00:00:c4    3\n    3     0  02:fa:00:00:00:c5    3\n    3     0  02:fa:00:00:00:c6    3\n    3     0  02:fa:00:00:00:c7    3\n    3     0  02:fa:00:00:00:c8    3\n    3     0  02:fa:00:00:00:c9    3\n    3     0  02:fa:00:00:00:ca    3\n    3     0  02:fa:00:00:00:cb    3\n    3     0  02:fa:00:00:00:cc    3\n    3     0  02:fa:00:00:00:cd    3\n    3     0  02:fa:00:00:00:ce    3\n    3     0  02:fa:00:00:00:cf    3\n    3     0  02:fa:00:00:00:d0    3\n    3     0  02:fa:00:00:00:d1    3\n    3     0  02:fa:00:00:00:d2    3\n    3     0  02:fa:00:00:00:d3    3\n    3     0  02:fa:00:00:00:d4    3\n    3     0  02:fa:00:00:00:d5    3\n    3     0  02:fa:00:00:00:d6    3\n    3     0  02:fa:00:00:00:d7    3\n    3     0  02:fa:00:00:00:d8    3\n    3     0  02:fa:00:00:00:d9    3\n    3     0  02:fa:00:00:00:da    3\n    3     0  02:fa:00:00:00:db    3\n    3     0  02:fa:00:00:00:dc    3\n    3     0  02:fa:00:00:00:dd    3\n    3     0  02:fa:00:00:00:de    3\n    3     0  02:fa:00:00:00:df    3\n    3     0  02:fa:00:00:00:e0    3\n    3     0  02:fa:00:00:00:e1    3\n    3     0  02:fa:00:00:00:e2    3\n    3     0  02:fa:00:00:00:e3    3\n    3     0  02:fa:00:00:00:e4    3\n    3     0  02:fa:00:00:00:e5    3\n    3     0  02:fa:00:00:00:e6    3\n    3     0  02:fa:00:00:00:e7    3\n    3     0  02:fa:00:00:00:e8    3\n    3     0  02:fa:00:00:00:e9    3\n    3     0  02:fa:00:00:00:ea    3\n    3     0  02:fa:00:00:00:eb    3\n    3     0  02:fa:00:00:00:ec    3\n    3     0  02:fa:00:00:00:ed    3\n    3     0  02:fa:00:00:00:ee    3\n    3     0  02:fa:00:00:00:ef    3\n    3     0  02:fa:00:00:00:f0    3\n    3     0  02:fa:00:00:00:f1    3\n    3     0  02:fa:00:00:00:f2    3\n    3     0  02:fa:00:00:00:f3    3\n    3     0  02:fa:00:00:00:f4    3\n    3     0  02:fa:00:00:00:f5    3\n    3     0  02:fa:00:00:00:f6    3\n    3     0  02:fa:00:00:00:f7    3\n    3     0  02:fa:00:00:00:f8    3\n    3     0  02:fa:00:00:00:f9    3\n    3     0  02:fa:00:00:00:fa    3\n    3     0  02:fa:00:00:00:fb    3\n    3     0  02:fa:00:00:00:fc    3\n    3     0  02:fa:00:00:00:fd    3\n    3     0  02:fa:00:00:00:fe    3\n    3     0  02:fa:00:00:00:ff    3\n",
+    "bob_capture": [
+      {
+        "time": 1789779068.2738333,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789779068.3272023,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789779068.3802907,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789779068.4336624,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789779068.4859421,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789779068.5365126,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789779068.5879502,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789779068.6401136,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789779068.693164,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789779068.7434812,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": [
+      {
+        "time": 1789779068.2739277,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789779068.3272898,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789779068.3803139,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789779068.4337375,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789779068.4859352,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789779068.5365348,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789779068.5880537,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789779068.6401346,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789779068.693207,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789779068.7435281,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ]
+  },
+  {
+    "trial": {
+      "false_sources": 256,
+      "case": "With defense",
+      "repeat": 1,
+      "table_entries": 64,
+      "bob_entry": "Present",
+      "probes_sent": 10,
+      "bob_received": 10,
+      "attacker_received": 0,
+      "exposure_percent": 0.0,
+      "controller_evictions": 195,
+      "checks_passed": true
+    },
+    "report": {
+      "capacity": 64,
+      "attack_count": 256,
+      "baseline": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "attack": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "recovery": {
+        "bob": 10,
+        "attacker": 0
+      },
+      "bob_displaced": false,
+      "defense_enabled": true,
+      "controller_evictions_during_attack": 195,
+      "checks": {
+        "bob_silent_during_flood_and_observation": true,
+        "wire_verified_distinct_valid_flood_frames": true,
+        "fresh_empty_table": true,
+        "capacity_and_aging_configured": true,
+        "only_three_switch_ports": true,
+        "hosts_have_no_ip_addresses": true,
+        "completed_before_aging": true,
+        "exposed_frames_identical": true,
+        "controller_decisions_expected": true,
+        "base_eviction_only_without_controller": true,
+        "controller_evicts_attacker_entries": true,
+        "three_expected_ports": true,
+        "host_addresses_match": true,
+        "baseline_bob_learned": true,
+        "baseline_private": true,
+        "fake_learning_matches_workload": true,
+        "table_occupancy_matches_workload": true,
+        "exposure_matches_destination_lookup": true,
+        "recovery_private": true,
+        "recovery_bob_learned": true,
+        "normal_forwarding_only": true,
+        "attack_sent_expected_unique_sources": true,
+        "standard_demo_outcome": true
+      }
+    },
+    "fdb_after_flood": "port  VLAN  MAC                Age\n    2     0  02:40:06:00:00:02    8\n    1     0  02:40:06:00:00:01    6\n    3     0  02:fa:00:00:00:c2    2\n    3     0  02:fa:00:00:00:c3    2\n    3     0  02:fa:00:00:00:c4    2\n    3     0  02:fa:00:00:00:c5    2\n    3     0  02:fa:00:00:00:c6    2\n    3     0  02:fa:00:00:00:c7    2\n    3     0  02:fa:00:00:00:c8    2\n    3     0  02:fa:00:00:00:c9    2\n    3     0  02:fa:00:00:00:ca    2\n    3     0  02:fa:00:00:00:cb    2\n    3     0  02:fa:00:00:00:cc    2\n    3     0  02:fa:00:00:00:cd    2\n    3     0  02:fa:00:00:00:ce    2\n    3     0  02:fa:00:00:00:cf    2\n    3     0  02:fa:00:00:00:d0    2\n    3     0  02:fa:00:00:00:d1    2\n    3     0  02:fa:00:00:00:d2    2\n    3     0  02:fa:00:00:00:d3    2\n    3     0  02:fa:00:00:00:d4    2\n    3     0  02:fa:00:00:00:d5    2\n    3     0  02:fa:00:00:00:d6    2\n    3     0  02:fa:00:00:00:d7    2\n    3     0  02:fa:00:00:00:d8    2\n    3     0  02:fa:00:00:00:d9    2\n    3     0  02:fa:00:00:00:da    2\n    3     0  02:fa:00:00:00:db    2\n    3     0  02:fa:00:00:00:dc    2\n    3     0  02:fa:00:00:00:dd    2\n    3     0  02:fa:00:00:00:de    2\n    3     0  02:fa:00:00:00:df    2\n    3     0  02:fa:00:00:00:e0    2\n    3     0  02:fa:00:00:00:e1    2\n    3     0  02:fa:00:00:00:e2    2\n    3     0  02:fa:00:00:00:e3    2\n    3     0  02:fa:00:00:00:e4    2\n    3     0  02:fa:00:00:00:e5    2\n    3     0  02:fa:00:00:00:e6    2\n    3     0  02:fa:00:00:00:e7    2\n    3     0  02:fa:00:00:00:e8    2\n    3     0  02:fa:00:00:00:e9    2\n    3     0  02:fa:00:00:00:ea    2\n    3     0  02:fa:00:00:00:eb    2\n    3     0  02:fa:00:00:00:ec    2\n    3     0  02:fa:00:00:00:ed    2\n    3     0  02:fa:00:00:00:ee    2\n    3     0  02:fa:00:00:00:ef    2\n    3     0  02:fa:00:00:00:f0    2\n    3     0  02:fa:00:00:00:f1    2\n    3     0  02:fa:00:00:00:f2    2\n    3     0  02:fa:00:00:00:f3    2\n    3     0  02:fa:00:00:00:f4    2\n    3     0  02:fa:00:00:00:f5    2\n    3     0  02:fa:00:00:00:f6    2\n    3     0  02:fa:00:00:00:f7    2\n    3     0  02:fa:00:00:00:f8    2\n    3     0  02:fa:00:00:00:f9    2\n    3     0  02:fa:00:00:00:fa    2\n    3     0  02:fa:00:00:00:fb    2\n    3     0  02:fa:00:00:00:fc    2\n    3     0  02:fa:00:00:00:fd    2\n    3     0  02:fa:00:00:00:fe    2\n    3     0  02:fa:00:00:00:ff    2\n",
+    "bob_capture": [
+      {
+        "time": 1789779083.583594,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a300000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:0"
+      },
+      {
+        "time": 1789779083.6341634,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a310000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:1"
+      },
+      {
+        "time": 1789779083.686865,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a320000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:2"
+      },
+      {
+        "time": 1789779083.7405093,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a330000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:3"
+      },
+      {
+        "time": 1789779083.79428,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a340000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:4"
+      },
+      {
+        "time": 1789779083.8476524,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a350000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:5"
+      },
+      {
+        "time": 1789779083.9017208,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a360000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:6"
+      },
+      {
+        "time": 1789779083.9556572,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a370000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:7"
+      },
+      {
+        "time": 1789779084.0053358,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a380000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:8"
+      },
+      {
+        "time": 1789779084.0593832,
+        "frame_hex": "02400600000202400600000188b54d41432d50524f42453a390000000000000000000000000000000000000000000000000000000000000000000000",
+        "payload": "MAC-PROBE:9"
+      }
+    ],
+    "attacker_capture": []
+  }
+]

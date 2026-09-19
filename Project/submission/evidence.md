@@ -774,7 +774,7 @@ Case duration: 17.09 seconds (aging: 300 seconds).
 From the submission folder in Ubuntu/WSL2:
 ```sh
 sudo python3 build_switch.py
-python3 lab.py preview
+python3 ethernet_frames.py preview
 sudo python3 run_demo.py
 ```
 See README.md for dependencies. Each case starts fresh; captures are ready before transmission. Raw captures are checked before these tables are exported.

@@ -11,7 +11,7 @@ import time
 from pathlib import Path
 
 sys.dont_write_bytecode = True
-import lab
+import ethernet_frames as ethernet
 
 SOURCE = Path('/opt/mac-flood/openvswitch-3.3.9')
 SWITCH = 'mac-switch'
@@ -19,17 +19,25 @@ HOST_PREFIX = 'mac-'
 BRIDGE = 'mac-br'
 
 
-def run_case(folder,vulnerable):
-    os.environ['MAC_CASE'] = 'Without defense' if vulnerable else 'With defense'
+def run_case(folder,vulnerable,on_stage=None,attack_count=256,quiet=False):
+    if not 0 <= attack_count <= 512:
+        raise ValueError('Attack count must be between 0 and 512')
+    case_name = 'Without defense' if vulnerable else 'With defense'
+    if on_stage or quiet:
+        os.environ.pop('MAC_CASE',None)
+    else:
+        os.environ['MAC_CASE'] = case_name
 
     def show_summary(stage,counts):
+        if quiet:
+            return
         print(f"\n{'Case':<18} {'Stage':<12} {'Bob':>8} {'Attacker':>13}",flush=True)
-        print(f"{os.environ['MAC_CASE']:<18} {stage:<12} {counts['bob']:>5}/10 {counts['attacker']:>10}/10\n",flush=True)
+        print(f"{case_name:<18} {stage:<12} {counts['bob']:>5}/10 {counts['attacker']:>10}/10\n",flush=True)
 
     folder.mkdir()
     started = time.monotonic()
-    names = [SWITCH] + [HOST_PREFIX + host for host in lab.HOSTS]
-    existing = {row.split()[0] for row in lab.run('ip','netns','list').splitlines()}
+    names = [SWITCH] + [HOST_PREFIX + host for host in ethernet.HOSTS]
+    existing = {row.split()[0] for row in ethernet.run('ip','netns','list').splitlines()}
     if existing.intersection(names):
         raise RuntimeError('Reserved namespaces already exist; refusing to change them')
     created,processes,logs = [],[],[]
@@ -45,7 +53,7 @@ def run_case(folder,vulnerable):
     switch_socket = runtime / 'switch.ctl'
 
     def vsctl(*args):
-        return lab.run(
+        return ethernet.run(
             str(SOURCE / 'utilities/ovs-vsctl'),
             '--timeout=15',
             '--db=unix:' + str(db_socket),
@@ -53,12 +61,12 @@ def run_case(folder,vulnerable):
         )
 
     def appctl(*args):
-        return lab.run(
+        return ethernet.run(
             str(SOURCE / 'utilities/ovs-appctl'),'-t',str(switch_socket),*args
         )
 
     def ofctl(command,*args):
-        return lab.run(
+        return ethernet.run(
             str(SOURCE / 'utilities/ovs-ofctl'),
             command,
             'unix:' + str(runtime / (BRIDGE + '.mgmt')),
@@ -94,9 +102,9 @@ def run_case(folder,vulnerable):
 
     try:
         for namespace in names:
-            lab.run('ip','netns','add',namespace)
+            ethernet.run('ip','netns','add',namespace)
             created.append(namespace)
-            lab.run(
+            ethernet.run(
                 'ip',
                 'netns',
                 'exec',
@@ -105,7 +113,7 @@ def run_case(folder,vulnerable):
                 '-qw',
                 'net.ipv6.conf.all.disable_ipv6=1',
             )
-            lab.run(
+            ethernet.run(
                 'ip',
                 'netns',
                 'exec',
@@ -114,8 +122,8 @@ def run_case(folder,vulnerable):
                 '-qw',
                 'net.ipv6.conf.default.disable_ipv6=1',
             )
-        for i,(host,mac) in enumerate(lab.HOSTS.items(),1):
-            lab.run(
+        for i,(host,mac) in enumerate(ethernet.HOSTS.items(),1):
+            ethernet.run(
                 'ip',
                 '-n',
                 SWITCH,
@@ -130,12 +138,12 @@ def run_case(folder,vulnerable):
                 'netns',
                 HOST_PREFIX + host,
             )
-            lab.run('ip','-n',SWITCH,'link','set',f'p{i}','up')
-            lab.run(
+            ethernet.run('ip','-n',SWITCH,'link','set',f'p{i}','up')
+            ethernet.run(
                 'ip','-n',HOST_PREFIX + host,'link','set','eth0','address',mac
             )
-            lab.run('ip','-n',HOST_PREFIX + host,'link','set','eth0','up')
-        lab.run(
+            ethernet.run('ip','-n',HOST_PREFIX + host,'link','set','eth0','up')
+        ethernet.run(
             str(SOURCE / 'ovsdb/ovsdb-tool'),
             'create',
             str(db),
@@ -197,13 +205,13 @@ def run_case(folder,vulnerable):
         empty_table = snapshot('initial')
         settings = vsctl('get','Bridge',BRIDGE,'other_config')
         switch_ports = vsctl('list-ports',BRIDGE).splitlines()
-        lab.learn()
+        ethernet.learn()
         baseline_table = snapshot('baseline')
         topology = {'ports': {},'hosts': {}}
-        for i,host in enumerate(lab.HOSTS,1):
+        for i,host in enumerate(ethernet.HOSTS,1):
             topology['ports'][host] = int(vsctl('get','Interface',f'p{i}','ofport'))
             topology['hosts'][host] = json.loads(
-                lab.run(
+                ethernet.run(
                     'ip',
                     '-n',
                     HOST_PREFIX + host,
@@ -214,19 +222,21 @@ def run_case(folder,vulnerable):
                     'eth0',
                 )
             )
-        baseline = lab.probe(folder,'baseline')
+        baseline = ethernet.probe(folder,'baseline')
         show_summary('Baseline',baseline)
+        if on_stage:
+            on_stage('Baseline',vulnerable,started + 240)
 
         def bob_tx_count():
             link = json.loads(
-                lab.run(
+                ethernet.run(
                     'ip','-n',HOST_PREFIX + 'bob','-s','-j','link','show','eth0'
                 )
             )[0]
             return link.get('stats64',link.get('stats'))['tx']['packets']
 
         bob_tx_before = bob_tx_count()
-        sender = lab.flood(folder)
+        sender = ethernet.flood(folder,attack_count)
         time.sleep(0.7)
         table = snapshot('attack')
         eviction_log = (folder / 'ovs-vswitchd.log').read_text()
@@ -235,74 +245,82 @@ def run_case(folder,vulnerable):
             for line in eviction_log.splitlines()
             if 'MAC_CONTROLLER evict=' in line
         ]
-        attack = lab.probe(folder,'attack')
+        attack = ethernet.probe(folder,'attack')
         show_summary('After attack',attack)
+        if on_stage:
+            on_stage('After attack',vulnerable,started + 240)
         bob_tx_after = bob_tx_count()
 
         os.environ['MAC_STAGE'] = 'Recovery learning'
-        lab.run(*lab.host_command('bob','learn','bob'),live=True)
+        ethernet.run(*ethernet.host_command('bob','learn','bob'),live=True)
         time.sleep(0.5)
         recovery_table = snapshot('recovery')
-        recovery = lab.probe(folder,'recovery')
+        recovery = ethernet.probe(folder,'recovery')
         show_summary('Recovery',recovery)
+        if on_stage:
+            on_stage('Recovery',vulnerable,started + 240)
         flows = ofctl('dump-flows')
         flow_rows = [line for line in flows.splitlines() if 'actions=' in line]
         elapsed = time.monotonic() - started
         bob_frames = json.loads((folder / 'attack-bob.json').read_text())
         attacker_frames = json.loads((folder / 'attack-attacker.json').read_text())
+        evictions = max(0,attack_count + 3 - 64)
+        bob_missing = ethernet.HOSTS['bob'] not in table
         checks = {
             'bob_silent_during_flood_and_observation': bob_tx_before == bob_tx_after,
-            'wire_verified_256_distinct_valid_flood_frames': True,
+            'wire_verified_distinct_valid_flood_frames': True,
             'fresh_empty_table': len(empty_table.splitlines()) == 1,
             'capacity_and_aging_configured': 'mac-table-size="64"' in settings
             and 'mac-aging-time="300"' in settings,
             'only_three_switch_ports': sorted(switch_ports) == ['p1','p2','p3'],
             'hosts_have_no_ip_addresses': all(
-                not topology['hosts'][host][0]['addr_info'] for host in lab.HOSTS
+                not topology['hosts'][host][0]['addr_info'] for host in ethernet.HOSTS
             ),
             'completed_before_aging': elapsed < 300,
-            'exposed_frames_identical': not vulnerable
+            'exposed_frames_identical': not bob_missing
             or sorted(record['frame_hex'] for record in bob_frames)
             == sorted(record['frame_hex'] for record in attacker_frames),
-            'controller_decisions_expected': (len(decisions) == 195)
+            'controller_decisions_expected': (len(decisions) == evictions)
             if not vulnerable
             else not decisions,
             'base_eviction_only_without_controller': (
                 'MAC_GLOBAL evict=' in eviction_log
             )
-            == vulnerable,
+            == (vulnerable and evictions > 0),
             'controller_evicts_attacker_entries': vulnerable
             or all(
-                'evict=02:fa:' in line or f'evict={lab.HOSTS["attacker"]}' in line
+                'evict=02:fa:' in line or f'evict={ethernet.HOSTS["attacker"]}' in line
                 for line in decisions
             ),
             'three_expected_ports': topology['ports']
             == {'alice': 1,'bob': 2,'attacker': 3},
             'host_addresses_match': all(
                 topology['hosts'][host][0]['address'] == mac
-                for host,mac in lab.HOSTS.items()
+                for host,mac in ethernet.HOSTS.items()
             ),
-            'baseline_bob_learned': lab.HOSTS['bob'] in baseline_table,
+            'baseline_bob_learned': ethernet.HOSTS['bob'] in baseline_table,
             'baseline_private': baseline == {'bob': 10,'attacker': 0},
-            'fake_entries_learned': '02:fa:' in table,
-            'table_at_capacity': len(table.splitlines()) - 1 == 64,
-            'policy_matches_expected_bob_retention': (lab.HOSTS['bob'] not in table)
-            == vulnerable,
-            'policy_matches_expected_exposure': attack
-            == {'bob': 10,'attacker': 10 if vulnerable else 0},
+            'fake_learning_matches_workload': ('02:fa:' in table) == (attack_count > 0),
+            'table_occupancy_matches_workload': len(table.splitlines()) - 1 == min(64,3 + attack_count),
+            'exposure_matches_destination_lookup': attack
+            == {'bob':10,'attacker':10 if bob_missing else 0},
             'recovery_private': recovery == {'bob': 10,'attacker': 0},
-            'recovery_bob_learned': lab.HOSTS['bob'] in recovery_table,
+            'recovery_bob_learned': ethernet.HOSTS['bob'] in recovery_table,
             'normal_forwarding_only': len(flow_rows) == 1
             and flow_rows[0].split('actions=')[1].strip() == 'NORMAL',
-            'attack_sent_256_unique_sources': json.loads(sender)['unique_sources']
-            == 256,
+            'attack_sent_expected_unique_sources': json.loads(sender)['unique_sources']
+            == attack_count,
         }
+        if attack_count == 256:
+            checks['standard_demo_outcome'] = (bob_missing == vulnerable and
+                attack == {'bob':10,'attacker':10 if vulnerable else 0})
         report = {
             'capacity': 64,
+            'attack_count': attack_count,
             'baseline': baseline,
             'attack': attack,
             'recovery': recovery,
-            'bob_displaced': lab.HOSTS['bob'] not in table,
+            'bob_displaced': ethernet.HOSTS['bob'] not in table,
             'defense_enabled': not vulnerable,
             'controller_evictions_during_attack': len(decisions),
             'checks': checks,
@@ -322,7 +340,7 @@ def run_case(folder,vulnerable):
         for log in logs:
             log.close()
         for namespace in reversed(created):
-            lab.run('ip','netns','del',namespace)
+            ethernet.run('ip','netns','del',namespace)
         shutil.rmtree(runtime)
 
 
@@ -412,7 +430,7 @@ def write_results(root,reports,output):
                     label,
                     stage,
                     len(table.splitlines()) - 1,
-                    'Present' if lab.HOSTS['bob'] in table else 'Absent',
+                    'Present' if ethernet.HOSTS['bob'] in table else 'Absent',
                     total,
                     count['bob'],
                     count['attacker'],
@@ -513,17 +531,21 @@ def write_results(root,reports,output):
     )
 
 
-def main():
+def check_build():
     binary = SOURCE / 'vswitchd/ovs-vswitchd'
     if not binary.exists():
         sys.exit('Build the separate lab OVS first: sudo python3 build_switch.py')
     manifest = json.loads((SOURCE.parent / 'manifest.json').read_text())
     for name in('build_switch.py','fair_controller.inc'):
-        if hashlib.sha256((lab.ROOT / name).read_bytes()).hexdigest() != manifest[name]:
+        if hashlib.sha256((ethernet.ROOT / name).read_bytes()).hexdigest() != manifest[name]:
             sys.exit('Build inputs changed; run build_switch.py again')
     if hashlib.sha256(binary.read_bytes()).hexdigest() != manifest['binary_sha256']:
         sys.exit('Binary differs from build manifest; rebuild')
-    root = lab.ROOT / 'results' / ('demo-' + time.strftime('%Y%m%d-%H%M%S'))
+
+
+def main():
+    check_build()
+    root = ethernet.ROOT / 'results' / ('demo-' + time.strftime('%Y%m%d-%H%M%S'))
     root.mkdir(parents=True)
     reports = {}
     print('Time,Case,Stage,Event,Host,Source MAC,Destination MAC,Frame label,Bytes',

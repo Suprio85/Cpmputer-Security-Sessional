@@ -1,0 +1,19 @@
+graph,false_sources,case,phase,category,value,trials
+traffic_exposure,256,Without defense,Baseline,attacker,0.0,1
+traffic_exposure,256,Without defense,After attack,attacker,10.0,1
+traffic_exposure,256,Without defense,Recovery,attacker,0.0,1
+traffic_exposure,256,With defense,Baseline,attacker,0.0,1
+traffic_exposure,256,With defense,After attack,attacker,0.0,1
+traffic_exposure,256,With defense,Recovery,attacker,0.0,1
+legitimate_delivery,256,Without defense,Baseline,bob,10.0,1
+legitimate_delivery,256,Without defense,After attack,bob,10.0,1
+legitimate_delivery,256,Without defense,Recovery,bob,10.0,1
+legitimate_delivery,256,With defense,Baseline,bob,10.0,1
+legitimate_delivery,256,With defense,After attack,bob,10.0,1
+legitimate_delivery,256,With defense,Recovery,bob,10.0,1
+mac_table_composition,256,Without defense,After flooding,Alice port,0.0,1
+mac_table_composition,256,With defense,After flooding,Alice port,1.0,1
+mac_table_composition,256,Without defense,After flooding,Bob port,0.0,1
+mac_table_composition,256,With defense,After flooding,Bob port,1.0,1
+mac_table_composition,256,Without defense,After flooding,Attacker port,64.0,1
+mac_table_composition,256,With defense,After flooding,Attacker port,62.0,1

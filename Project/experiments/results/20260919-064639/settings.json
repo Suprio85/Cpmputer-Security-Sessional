@@ -1,0 +1,26 @@
+{
+  "volumes": [
+    0,
+    16,
+    32,
+    60,
+    61,
+    62,
+    64,
+    128,
+    256
+  ],
+  "repeats": 1,
+  "table_capacity": 64,
+  "initial_entries": 3,
+  "aging_seconds": 300,
+  "attack_rate": 200,
+  "probes_per_stage": 10,
+  "exposure_definition": "100 * attacker-received Bob-bound probes / probes sent after flooding",
+  "binary_sha256": "99b47579b7ea6bc5712171d3c7e388e7576e4a4d0cc9f701247253ecd91d2b89",
+  "source_sha256": {
+    "run_demo.py": "1641119ccb4f54367bcb4f9def7a3c42f6d92d8de7c05c9471719314cf94de46",
+    "ethernet_frames.py": "a1ebca56e7b8a273b11bb733d9f68696a4e0bbad263cda98e203129e4a0e57a6",
+    "fair_controller.inc": "2aa168588c77e9faa60625e7da162d110d1364bde3b4b57e14de34db4c6df85e"
+  }
+}

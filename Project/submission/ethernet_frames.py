@@ -103,7 +103,7 @@ def worker(args):
             sock.settimeout(0.1)
             records = []
             output.with_suffix('.ready').write_text('ready')
-            deadline = time.monotonic() + 3
+            deadline = time.monotonic() + (float(args[3]) if len(args) > 3 else 3)
             while time.monotonic() < deadline:
                 try:
                     frame = sock.recv(65535)
@@ -173,19 +173,22 @@ def learn():
     time.sleep(0.5)
 
 
-def flood(folder):
+def flood(folder,count=256):
     os.environ['MAC_STAGE'] = 'MAC flooding'
     output = folder / 'attack-flood-alice.json'
-    process = subprocess.Popen(host_command('alice','capture_flood',str(output),'alice'))
+    duration = max(3,count / 200 * 1.5 + 1)
+    process = subprocess.Popen(host_command('alice','capture_flood',str(output),'alice',str(duration)))
     try:
         deadline = time.monotonic() + 5
         while not output.with_suffix('.ready').exists():
             if time.monotonic() > deadline or process.poll() is not None:
                 raise RuntimeError('Flood capture did not become ready')
             time.sleep(0.05)
-        sender = run(*host_command('attacker','flood'),live=True)
+        sender = (run(*host_command('attacker','flood',str(count),'200'),live=True) if count else
+                  json.dumps({'frames_sent':0,'unique_sources':0,'frame_bytes':60,
+                              'nominal_rate':200,'elapsed_seconds':0}))
         (folder / 'attack-flood-sender.json').write_text(sender + '\n')
-        if process.wait(timeout=6) != 0:
+        if process.wait(timeout=duration + 3) != 0:
             raise RuntimeError('Flood capture failed')
         actual = [record['frame_hex'] for record in json.loads(output.read_text())]
         expected = [
@@ -196,7 +199,7 @@ def flood(folder):
                 + b'\x88\xb5'
                 + f'MAC-FLOOD:{i}'.encode().ljust(46,b'\0')
             ).hex()
-            for i in range(256)
+            for i in range(count)
         ]
         if sorted(actual) != sorted(expected):
             raise RuntimeError(
@@ -270,4 +273,4 @@ if __name__ == '__main__':
     elif len(sys.argv) == 1 or sys.argv[1:] == ['preview']:
         preview()
     else:
-        sys.exit('Use: python3 lab.py preview')
+        sys.exit('Use: python3 ethernet_frames.py preview')
